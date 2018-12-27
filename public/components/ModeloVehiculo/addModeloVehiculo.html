@@ -1,0 +1,49 @@
+
+
+
+
+<!-- Modal -->
+
+<div class="modal-header"  ng-init="init()">
+    <h3 class="modal-title" id="exampleModalLongTitle">Registro Modelo vehiculo</h3>
+   
+  </div>
+
+  <div class="modal-body"   >
+    
+          <div class="col-md-12 sabuesoContainer" >
+
+              <form >
+              <div class="row">
+                  <div class="form-group">
+                      <label for="" class="control-label">Modelo:</label>
+                      <input type="text" class="form-control" placeholder="Modelo" ng-model="ModeloModelo"    required />
+                  </div>
+
+                
+                  <div class="form-group">
+                      <label for="" class="control-label">Marca:</label>                       
+                       <select class="form-control" ng-options="mar.Descripcion for mar in listaMarcaVehiculo() track by mar.PK_MarcaVehiculo"  ng-model="FK_MarcaVehiculoModelo" required>                 
+                    </select>
+                        
+                   
+                  </div>
+                
+                  <div class="form-group"  >
+                      <button class="btn btn-primary" type="button" ng-click="guardarModelovehiculo()"    >Guardar</button>
+                      <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+                                    
+                  </div>
+              </div>
+              </form>
+  
+  </div>
+
+  
+  <div class="modal-footer">
+ </div>
+
+</div>
+
+<!--:::: FIN Agregar Estados Unidades-->
+

@@ -1,0 +1,34 @@
+  <div class="modal-header" ng-init="mostrarGeocercas()">
+      <h3>Lista de geocercas</h3>
+    </div>
+    <div class="modal-body sabuesoContainer">
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" placeholder="Buscar Geocerca" aria-describedby="basic-addon1" ng-model="Filtrogeocerca" class="form-control"/>
+        </div>
+        <div class="sabuesoTable50">
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Loc.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="geocerca in listaGeocercas | filter:Filtrogeocerca">
+                <th>{{geocerca.Nombre}}</th>
+                <th>{{geocerca.Descripcion}}</th>
+                <th ng-click="localizar(geocerca); $dismiss();">
+                    <span class="glyphicon glyphicon-screenshot"></span>
+                </th>
+                <th>
+                   <botton ng-really-message="¿Desea eliminar esta geocerca?" ng-really-click="eliminarGeocerca(geocerca,geocerca.Id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></botton>
+                </th>
+              </tbody>
+          </table>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-warning" ng-click="$dismiss()" >Ok</button>
+    </div>

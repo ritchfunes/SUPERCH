@@ -1,0 +1,31 @@
+//
+   Created by Walter Suazo on 21/03/2016.
+
+doctype html
+html(lang='en', xmlns='http://www.w3.org/1999/xhtml')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='initial-scale=1.0, width=device-width')
+    title Super Sabueso
+    link(rel='stylesheet', href='/assets/css/clock.css')
+  body(onload="estado()")
+    div(style='text-align:center')
+      label(id="estado" style="font-size:xx-large;font-family:cursive; color:red")
+      section
+        #clock
+          #hour
+          #minute
+          #second
+          #center
+
+    script(src='/assets/libs/jquery-2.1.1.min.js')
+    script(src='/assets/js/clock.js')
+    script.
+      function estado() {
+        document.getElementById("estado").innerHTML = !{texto}
+      }
+        (function ($) {
+
+          $(Phhht.Clock.setUp);
+        }(jQuery));
+

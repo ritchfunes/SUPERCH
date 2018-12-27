@@ -1,0 +1,65 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Modelo de unidades</h3>
+</div>
+
+<br>
+<div ng-controller="modelounidadController"  >
+<div class="" >
+<button type="button" class="btn btn-primary" ng-click="showform()"   >
+        Agregar
+      </button>
+
+      <input type="button" class="btn btn-info"  onclick="tableToExcel('tablamodelounidad', 'tabla modelounidades')" value="Exportar a excel">
+
+ </div>
+
+
+<div  class="modal-body sabuesoContainer" ng-init="listarModeloUnidades()" >
+
+        <!--::::Input de Busqueda-->
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+           <input type="text" placeholder="Buscar Modelo unidad" aria-describedby="basic-addon1" ng-model="FiltroModelounidad" class="form-control"/>
+           </div>
+       
+       <div class="sabuesoTable50">
+           <table class="table table-striped" id="tablamodelounidad">
+              <thead>
+                 <tr>
+                        <th>Vehiculo</th>
+                    <th>Modelo</th>
+                    <th>Marca</th>
+                    <th>Año</th>
+                    <th>Estado</th>
+                    <th>Activo</th>
+                 </tr>
+              </thead>
+                 <tbody> 
+                    <tr ng-repeat="modelound in listaModeloUnidades() | filter:FiltroModelounidad">
+                    <th>{{ modelound.Nombre_Vehiculo }}</th>
+                    <th>{{ modelound.Modelo }}</th>
+                    <th>{{ modelound.Descripcion }}</th>
+                    <th>{{ modelound.Year }}</th>
+                    <th>{{ modelound.Estado }}</th>
+                    <th>{{ modelound.Activo }}</th>
+                    <th>
+                       <botton  ng-really-message="¿Desea modificar esta unidad?" ng-really-click="modificarmodelounidad(modelound)"   class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                   </th>
+       
+                    <th>
+                       <botton   ng-really-message="¿Desea actualizar esta unidad a inactivo" ng-really-click="eliminarModelounidades(modelound , modelound.PK_ModeloUnidades )"   class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                    </th>
+                   
+       
+                    </tr>
+                 </tbody>
+              </table>
+        </div>
+       
+       
+        
+       </div>
+
+    </div>
+
+

@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "driver": "mysql",
+    "user": "Master",
+    "database": "Gateway1",
+    "password": "H0ndu.gps!"
+  },
+
+  "production": {
+    "driver": "mysql",
+    "user": "Master",
+    "database": "Gateway1",
+    "password": "H0ndu.gps!"
+
+  }
+}

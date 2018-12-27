@@ -1,0 +1,295 @@
+<script>
+   $(function () {
+      if (isMobile.any())
+      {
+
+         setTimeout(function(){
+            window.location.hash = "hi";
+         },300)
+
+      }
+   });
+</script >
+
+<style>
+  .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+  .info h4 {
+    margin: 0 0 5px;
+    color: #777;
+  }
+
+
+</style>
+
+<div id="mapaId" ng-controller="HttpRequest" ng-init="init()">
+   <div id="BarraVertical" style="padding:2px;" class="col-md-3">
+
+
+
+      <img ng-src="{{logoSocio}}" id="Logo" style="max-height: 100px;" class="img-responsive hidden-xs"/>
+
+      <div  style="overflow-y: visible; height:100%; padding:0px; margin:0px;" class="container-fluid"><br/>
+
+         <!--:::::::::::::::::::::::::::Input de busqueda-->
+         <div style="margin-bottom:10px;" class="input-group">
+            <span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" placeholder="Buscar Vehiculo" aria-describedby="basic-addon1" ng-model="FiltroVehiculo.elemento.NombreCompleto" class="form-control"/>
+         </div>
+
+
+         <!--:::::::::::::::::::::::::::::Listado de Vehiculos-->
+         <a name="hi"></a>
+         <label><input type="checkbox" ng-model="todos" ng-click="marcarTodos()" >Todos</label>
+         <label><input type="checkbox" ng-model="rastro" ng-click="rastros()" >Rastro</label>
+         <span style="float: right;">Unidades({{ListaUnidades().length}})</span>
+
+
+         <div id="ListadoVehiculoId" style="overflow-y: auto; max-height: 65vh;">
+
+
+
+            <div style="margin-bottom:2px;"  ng-repeat="unidades in unidadesFiltradas = (ListaUnidades() | filter:FiltroVehiculo)">
+               <div style="margin:0px;"  class="list-group-item active">
+
+                  <input type="checkbox" ng-model="unidades.check" ng-click="toggleUnidades(unidades)">
+                  <span style="width:220px; border-right: 1px solid white;" ng-class="unidades.elemento.Entradas==0?'fa fa-pause':'fa fa-car'">  {{ unidades.elemento.NombreCompleto }}
+                     <label style="float:right; font-size:10px;  margin-right:5px;" ng-bind="fromNow1(unidades.elemento.FechaHora)"></label>
+                  </span>
+
+
+                  <span ng-click="modalOpciones(unidades.elemento)" tooltip-placement="left" uib-tooltip="Otras Opciones" class="glyphicon glyphicon-list"></span>
+                  <span ng-click="comandoPosicion(unidades.elemento);verificarCheck(unidades)" tooltip-placement="left" uib-tooltip="Localizar Unidad" class="glyphicon glyphicon-screenshot"></span>
+                  <span ng-click="LocalizarPunto(unidades.elemento.Latitud,unidades.elemento.Longitud);verificarCheck(unidades)" tooltip-placement="left" uib-tooltip="Ultima Posicion" class="glyphicon glyphicon-share-alt"></span>
+
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+
+
+   <!--Contendor del mapa y opciones-->
+   <div id="ContenedorMapa" style="margin:0px; padding-left:2px;padding-right:4px; padding-bottom:0px; " class="col-md-9">
+
+      <div id="divMapa" >
+
+
+
+
+         <div style="float:right; margin-right:70px;" class="hidden-xs">
+
+            <div class="dropdown btn-group" ng-show="empresa=='Loginhsa'  || empresa=='Cerveceria'">
+               <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Transferencias
+                  <span class="caret"></span>
+               </button>
+
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#" ng-click="crearTransferencias()">Asignar Transferencia</a></li>
+                  <li><a href="#" ng-click="listarTransferencias()">Listar Tranferencias Asignadas</a></li>
+               </ul>
+            </div>
+
+            <div class="dropdown btn-group">
+               <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Enlazar Rastras
+                  <span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#" ng-click="enlazarRastra()">Enlazar Rastras</a></li>
+                  <li><a href="#" ng-click="desenlazarRastra()">Desenlazar Rastras</a></li>
+                  <li><a href="#" ng-click="RastrasEnlazada()">Rastras Enlazadas</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#" ng-click="crearRastras()">Crear Rastras</a></li>
+                  <li><a href="#" ng-click="editarRastras()">Modificar Rastras</a></li>
+               </ul>
+            </div>
+
+         <div class="dropdown btn-group">
+           <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Motoristas
+              <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+               <li><a href="#" ng-click="crearMotorista()">Registrar Motorista</a></li>
+               <li><a href="#" ng-click="listarMotoristas()" >Listar Motorista</a></li>
+           </ul>
+         </div>
+
+            <div class="dropdown btn-group">
+              <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                 Lugares Autorizados
+                 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                 <li><a href="#" ng-click="noAutorizados()">Crear Lugares Autorizados</a></li>
+                 <li><a href="#" ng-click="verAutorizados()">Ver Lugares Autorizados</a></li>
+                 <li role="separator" class="divider"></li>
+                 <li><a href="#" ng-click="Alertas()">Asignar Notificaciones</a></li>
+                 <li><a href="#" ng-click="listarAlertas()">Listar Notificaciones</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown btn-group">
+               <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Geocercas
+                  <span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#" ng-click="listarGeocercas()">Listar Geocerca</a></li>
+                  <li><a href="#" ng-click="Geocercas()">Editar Geocerca</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#" ng-click="Filtros()">Crear Filtro</a></li>
+                  <li><a href="#" ng-click="listarFiltros()">Listar Filtros</a></li>
+               </ul>
+            </div>
+
+           <div class="dropdown btn-group">
+               <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Referencias
+                  <span class="caret"></span>
+               </button>
+
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#" ng-click="ListarReferencias()">Listar referencias</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#" ng-click="categorias()">Crear categoria</a></li>
+                  <li><a href="#" ng-click="listarCategorias()">Listar categorias</a></li>
+               </ul>
+            </div>
+
+
+
+         </div>
+
+         <leaflet lf-center="center1()" markers="markers2()" paths="Paths" controls="controls"  geojson="geoJSON()" geojson-nested="true" layers="layers"  height="88vh" width="100%"></leaflet>
+
+
+
+
+
+
+
+         <!--Modal para renderizar-->
+         <div id="modal-contenedor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <botton type="button" data-dismiss="modal" aria-hidden="true" class="close">X</botton>
+                     <h4 id="titulo"></h4>
+                  </div>
+                  <div class="modal-body" id="modal-body">
+                     <div ng-include="getVista()" ></div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                  </div>
+
+               </div>
+            </div>
+
+         </div>
+
+
+         <!--Modales Geocercas-->
+         <div ng-controller="ControllerGeocercas" class="div">
+
+            <!---Modal para Crear Geocercas-->
+            <div id="modal-CrearGeocerca" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <botton type="button" data-dismiss="modal" aria-hidden="true" class="close">X</botton>
+                        <h4 id="titulo"></h4>
+                     </div>
+                     <div class="modal-body">
+                        <div>
+                           <form id="Form-Geocerca-Crear">
+                              <input type="text" name="nombre" ng-model="nombre" placeholder="Nombre Geocerca" style="margin-top:10px;" class="form-control"/>
+                              <textarea id="descripcion" style="margin-top:10px;" ng-model="descripcion" name="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+                              <input id="color" type="color" name="color" ng-model="color" placeholder="Color" style="margin-top:10px;" class="form-control"/>
+                              <input id="puntos" type="text" style="margin-top:10px;" ng-model="puntos" name="posiciones" placeholder="Posicion" class="form-control"/>
+                              <select name="estado" style="margin-top:10px;" ng-model="estado" class="form-control">
+                                 <!--option(value='') ESTADO"-->
+                                 <option value="VISIBLE" selected="selected">VISIBLE</option>
+                                 <option value="NOVISIBLE">NO VISIBLE</option>
+                              </select><br/>
+                              <button ng-click="guardar()" style="margin-right:10px;" class="btn btn-primary">Guardar</button>
+                              <button data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer"></div>
+            </div>
+
+
+            <!--Modal Actualizar Geocercas-->
+            <div id="modal-ActualizarGeocerca" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <botton type="button" data-dismiss="modal" aria-hidden="true" class="close">X</botton>
+                        <h4 id="titulo"></h4>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                           <input id="nombreupdt" type="text" name="nombre" ng-model="nombre" placeholder="Nombre Geocerca" style="margin-top:10px;" class="form-control"/>
+                           <input id="idudpt" type="text" name="id" ng-model="id" aria-hidden="true" placeholder="id" style="margin-top:10px;" class="form-control"/>
+                           <textarea id="descripcionupdt" style="margin-top:10px;" name="descripcion" ng-model="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+                           <input id="colorupdt" type="color" name="color" ng-model="color" placeholder="Color" style="margin-top:10px;" class="form-control"/>
+                           <input id="puntosupdt" type="text" style="margin-top:10px;" name="posiciones" ng-model="puntos" placeholder="Posicion" class="form-control"/>
+                           <select id="estadoupdt" name="estado" style="margin-top:10px;" ng-model="estado" class="form-control">
+                              <!--option(value='') ESTADO-->
+                              <option value="VISIBLE">VISIBLE</option>
+                              <option value="NOVISIBLE">NO VISIBLE</option>
+                           </select><br/>
+                           <button ng-click="actualizar()" style="margin-right:10px;" class="btn btn-primary">Actualizar</button>
+                           <button data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer"></div>
+            </div>
+
+         </div>
+
+
+         <div id="modal-notificacion" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+            <div class="modal-dialog modal-sm">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <botton type="button" data-dismiss="modal" aria-hidden="true" class="close">X</botton>
+                     <h3>Notificacion</h3>
+                  </div>
+                  <div class="modal-body">
+                     <div id="cuerpo"></div>
+                  </div>
+                  <div class="modal footer"></div>
+               </div>
+            </div>
+         </div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+   </div>
+</div>

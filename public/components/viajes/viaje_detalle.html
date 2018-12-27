@@ -1,0 +1,167 @@
+<link rel="stylesheet" href="components/viajes/viajes-style.css">
+<div class="modal-header">
+    <h3 class="modal-title" ng-bind="viaje.vehiculo"></h3>
+</div>
+<div id="modalDetalleBody" class="modal-body">
+    <div >
+        <div class="col-md-9">
+
+            <div id="ComentarioViajeBox" class="row" style="margin-bottom: -15px!important;">
+                <div class="col-md-9">
+                    <strong>Comentario</strong><br>
+                    <textarea class="form-control" rows="4" ng-model="viaje.observacion"></textarea>
+                </div>
+                <div class="col-md-3">
+
+                    <br>
+                    <button class="btn btn-success btn-large btn-block" ng-really-message="¿Desea Terminar el viaje?" ng-really-click="cancelarViaje(4)">Terminar Viaje</button>
+                    <br>
+                    <button class="btn btn-warning btn-large btn-block" ng-really-message="¿Desea cancelar el viaje?" ng-really-click="cancelarViaje(5)">Cancelar Viaje</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4 puntero" ng-click="tabladetalle=1" style="padding:2px;">
+                    <div class="alert alert-danger text-center">
+                        <strong>Detenciones No Autori..</strong>
+                        <br><br>
+                        <strong >{{detenciones.length}}</strong>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-md-4 puntero" ng-click="tabladetalle=2" style="padding: 2px;">
+                    <div class="alert alert-warning text-center">
+                        <strong>Excesos De Velocidad</strong>
+                        <br><br>
+                        <strong>0</strong>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="padding: 2px;">
+                    <div class="alert alert-danger text-center">
+                        <strong>Velocidades</strong>
+                        <br>
+                        <strong>Max:{{velocidades.VelMax}}</strong>
+                        <br>
+                        <strong>Pro:{{velocidades.VelPRom | number:0}}</strong>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div  class="row" ng-show="tabladetalle == 1">
+                <div class="text-center" style="padding-top:2px!important;">:<strong>:Detenciones No Autorizadas:</strong>:</div>
+                <div id="detTablaParadas"  class="table-responsive">
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Hora Detencion</th>
+                                <th>Tiempo Detenido</th>
+                                <th>Lugar</th>        
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <tr ng-repeat="detencion in detenciones" >
+                                <td ng-bind="detencion.Inicio"   ></td>
+                                <td ng-bind="detencion.Duracion" ></td>
+                                <td ng-bind="detencion.ubicacion"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div  class="row" ng-show="tabladetalle == 2">
+                <div class="row text-center" style="padding-top:2px!important;">:<strong>:Excesos De Velocidad:</strong>:</div>
+                <div id="detTablaExceso"  class="table-responsive">
+                    <table class="table  table-striped">
+                        <thead>
+                        <th style="padding-top: 0px!important; padding-bottom:0px!important;">Hora Exceso</th>
+                        <th style="padding-top: 0px!important; padding-bottom:0px!important;">Ubicacion</th>
+                        <th style="padding-top: 0px!important; padding-bottom:0px!important;">Vel. Alcansada</th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="exceso in excesos" >
+                            <td ng-bind="exceso.Hora"    style="padding-top: 0px!important; padding-bottom: 0px!important;"></td>
+                            <td ng-bind="exceso.Ubicacion"  style="padding-top: 0px!important; padding-bottom: 0px!important;"></td>
+                            <td ng-bind="exceso.velocidad" style="padding-top: 0px!important; padding-bottom: 0px!important;"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-3">
+            <br>
+            <div  class="col-md-12 detViajeBarraDerecha" >
+
+
+                <div class="text-center">
+                    <span class="text-center">:<strong>:TIEMPOS VIAJE:</strong>:</span>
+                </div>
+                <div  class="row">
+                    <table id="TiemposViaje" >
+                        <tbody>
+                            <tr>
+                                <th>Pre-Viaje:</th>
+                                <td>{{tiemposViaje[0].preViaje}}</td>
+                            </tr>
+                            <tr>
+                                <th>Tiempo Ida:</th>
+                                <td>{{tiemposViaje[0].tiempoIda}}</td>
+                            </tr>
+                            <tr>
+                                <th>TAT Destino:</th>
+                                <td>{{tiemposViaje[0].tatDestino}}</td>
+                            </tr>
+                            <tr>
+                                <th>Tiempo Ret.:</th>
+                                <td>{{tiemposViaje[0].tiempoRetorno}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+            <br><br>
+            <div  class="col-md-12 detViajeBarraDerecha" >
+
+
+            <div class="text-center">
+                <span class="text-center">Eventos</span>
+            </div>
+            <div id="tablaEventos" class="row table-responsive">
+                <table class="table table-striped table-condensed">
+                <thead>
+                    <th>Hora</th>
+                    <th>Evento</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="evento in eventos">
+                        <td ng-bind="evento.FechaHora"></td>
+                        <td ng-bind="evento.Nombre"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+
+        </div>
+
+
+
+
+    </div>
+</div>
+<div class="modal-footer">
+    <!--button class="btn btn-primary" type="button" ng-click="ok()">OK</button-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">salir</button>
+</div>

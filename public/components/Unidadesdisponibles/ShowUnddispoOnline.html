@@ -1,0 +1,65 @@
+
+
+<script type="text/javascript" src="/javascripts/exportarexcel.js"></script>
+
+
+
+
+<div class="modal-header" >
+        <h3 class="modal-title">Listado de unidades disponibles en linea</h3>
+    </div>
+
+   
+    <br>
+ 
+    <div class="" ng-controller="unidadesdisponiblesCtrl"    >
+
+
+
+          <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaunidadesdispolinea', 'tabla unidades')" value="Exportar a excel">
+
+        
+     </div>
+
+
+    <div ng-controller="unidadesdisponiblesCtrl" class="modal-body sabuesoContainer" ng-init="listarDisponibilidadunidadesonline()" >
+
+            <!--::::Input de Busqueda-->
+            <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+               <input type="text" placeholder="Buscar unidades disponibles" aria-describedby="basic-addon1" ng-model="Filtrounidadesdisponibles" class="form-control"/>
+               </div>
+           
+           <div class="sabuesoTable50">
+               <table class="table table-striped" id="tablaunidadesdispolinea">
+                  <thead>
+                     <tr>
+                        <th>Vehiculo</th>
+                        <th>Rastra</th>
+                  <!--      <th>Fecha asignacion</th>
+                        <th>Fecha entrega</th>
+                   -->     <th>Estado</th>
+                   <!--     <th>Activo</th>
+                        -->
+                     </tr>
+                  </thead>
+                     <tbody> 
+                        <tr ng-repeat="unidadesdisponibles in listaDisponibilidadunidadesonline() | filter:Filtrounidadesdisponibles ">
+                        <th> {{ unidadesdisponibles.Nombre_Vehiculo }} </th>
+                        <th> {{ unidadesdisponibles.Rastra  }}</th>               
+                     <!--   <th> {{ unidadesdisponibles.FechaAsignacion  }}</th>
+                        <th> {{ unidadesdisponibles.FechaEntrega }}</th>
+                     -->    <th>  {{ unidadesdisponibles.Estado }} </th>
+                     <!--   <th> {{ unidadesdisponibles.Activo }}</th>
+                       -->
+                       
+           
+                        </tr>
+                     </tbody>
+                  </table>
+            </div>
+           
+           
+            
+           </div>
+
+    

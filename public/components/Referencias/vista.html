@@ -1,0 +1,51 @@
+<div class="modal-header">
+   <h3 class="modal-title">Lista de Referencias</h3>
+</div>
+
+<div class="modal-body sabuesoContainer" >
+   <!--::::Input de Busqueda-->
+   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+      <input type="text" placeholder="Buscar Vehiculo" aria-describedby="basic-addon1" ng-model="FiltroReferencias" class="form-control"/>
+   </div>
+
+   <div class="sabuesoTable50">
+      <table class="table table-striped">
+         <thead>
+         <tr>
+            <!--th id-->
+            <th>Referencia</th>
+            <th>Descripcion</th>
+            <th>Latitud</th>
+            <th>Longitud</th>
+            <th>Icono</th>
+            <th>Visible</th>
+            <th>Categoria</th>
+         </tr>
+         </thead>
+         <tbody>
+         <tr ng-repeat="referencia in getReferencias() | filter:FiltroReferencias">
+            <th>{{ referencia.Nombre }}</th>
+            <th>{{ referencia.Descripcion }}</th>
+            <th>{{ referencia.Latitud }}</th>
+            <th>{{ referencia.Longitud }}</th>
+            <th><img ng-src="{{ referencia.url }}" style="width: 32px; height: 32px"/></th>
+            <th>{{ referencia.visibleCompuesto }}</th>
+            <th>{{ referencia.Categoria }}</th>
+            <th>
+               <botton ng-really-message="¿Desea ver la referencia en el mapa?" ng-really-click="localizar(referencia)" class="btn btn-warning"><span class="glyphicon glyphicon-screenshot"></span></botton>
+            </th>
+            <th>
+               <botton ng-click="modificar(referencia,referencia.Id)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></botton>
+            </th>
+            <th>
+               <botton ng-really-message="¿Desea eliminar esta referencia?" ng-really-click="eliminar(referencia,referencia.Id)" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span></botton>
+            </th>
+         </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+
+<div class="modal-footer">
+   <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cerrar</button>
+</div>

@@ -1,0 +1,63 @@
+
+<div class="" id="exampleModalCenter" ng-init="init()" >
+
+        <div class="modal-header"  >
+          <h3 class="modal-title" id="exampleModalLongTitle"> Editar  Plan turno</h3>
+         
+        </div>
+
+        <div class="modal-body">
+          
+                <div class="col-md-12 sabuesoContainer" >
+    
+                
+                    <div class="row">
+                      
+
+                        <div class="form-group">
+                                <label for="" class="control-label">Cantidad:</label>
+                                <input type="text" class="form-control" placeholder="Cantidad" ng-model="planturnos.Cantidad"  required/>
+                            </div>
+                            <div class="form-group">
+                                        <label for="" class="control-label">Cumplimiento:</label>
+                                        <input type="text" class="form-control" placeholder="Cumplimiento" ng-model="planturnos.Cumplimiento"  required/>
+                              </div>
+                            <div class="form-group">
+                                    <label for="" class="control-label">Fecha:</label>                       
+                                    <input type="date" class="form-control" placeholder="Fecha" ng-model="planturnos.Fecha"    required/>
+                                </div>
+                                <div class="form-group">
+                                        <label for="" class="control-label">Real:</label>                       
+                                        <select name="" id="" class="form-control" 
+                                     ng-options="estado.id as estado.estado for estado in estados"
+                                     ng-model="planturnos.Real" ></select>
+                                    </div>
+    
+
+                      <div class="form-group">
+                                        <label for="" class="control-label">Turnos:</label>
+                                        <select class="form-control" ng-options="tur.Descripcion for tur in listaTurnos() track by tur.PK_Turno"  ng-model="dataTurnos"  >                                    
+                                        </select>
+                                              
+                                          
+                      </div>
+                      
+
+                      
+
+                    </div>
+                   
+        
+        </div>
+
+        
+        <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="editarplanTurnos()"    >Guardar</button> 
+                <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+
+        </div>
+
+  </div>
+
+<!--:::: FIN Agregar Estados Unidades-->
+

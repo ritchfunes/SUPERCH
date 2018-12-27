@@ -1,0 +1,30 @@
+//
+   Created by GMG on 08/07/2015.
+
+extends Layouts/MasterLayout
+
+
+block title
+   title= title
+
+block JS
+   script.
+      token = !{token};
+      _rol = !{rol};
+      _usuario=!{usuario}
+      _empresa=!{empresa}
+      privilegio=!{privilegios}
+      _logo=!{logo}
+
+
+      globalHeader = {'authorization': token,
+                       rol:_rol,
+                       usuario:_usuario,
+                       empresa:_empresa,
+                       logo:_logo
+                     };
+
+
+
+
+

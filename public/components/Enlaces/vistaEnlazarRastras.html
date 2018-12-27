@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3 class="modal-title">Enlazar Rastras</h3>
+</div>
+
+<div class="modal-body sabuesoContainer" ng-init="listarNoEnlazados()">
+    <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" placeholder="Buscar Unidad" aria-describedby="basic-addon1" ng-model="FiltroUnidad" class="form-control"/>
+        <input type="text" placeholder="Buscar Rastra" aria-describedby="basic-addon1" ng-model="FiltroRastra" class="form-control"/>
+    </div>
+
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Seleccion</th>
+                    <th>Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="unidad in listaUnidades | filter: FiltroUnidad | orderBy:'Nombre_Vehiculo'">
+                    <th><input type="radio" name="selectedUnidad" ng-model="$parent.selectedUnit" ng-value="unidad"></th>
+                    <th>{{unidad.Nombre_Vehiculo}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Seleccion</th>
+                <th>Rastra</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="rastra in listaRastras | filter: FiltroRastra | orderBy: 'Rastra'">
+                <th><input type="radio" name="selectedRastra" ng-model="$parent.selectedRastra" ng-value="rastra"></th>
+                <th>{{rastra.Rastra}}</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="enlazar()">Enlazar</button>
+    <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cerrar</button>
+</div>

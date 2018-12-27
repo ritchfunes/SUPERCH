@@ -1,0 +1,146 @@
+<script>
+    $(function () {
+        if (isMobile.any())
+        {
+
+            setTimeout(function(){
+                window.location.hash = "hi";
+            },300)
+
+        }
+    });
+</script>
+
+<div style="max-height: 80vh;"   ng-controller="RecorridoCtrl">
+    <div id="BarraVertical" style="padding:2px;  " class="col-md-3">
+
+
+            <br/>
+
+
+            <!--:::::::::::::::::::::::::::Input de busqueda-->
+            <div style="margin-bottom:2px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" placeholder="Buscar Vehiculo" aria-describedby="basic-addon1" ng-model="FiltroVehiculo" class="form-control"/>
+            </div>
+
+
+            <!--:::::::::::::::::::::::::::::Listado de Vehiculos-->
+            <a name="hi"></a>
+            <div id="ListadoVehiculoId" style="overflow-y: auto; height: 25vh; max-height:24vh; background-color: white; padding-top: 10px; padding-left: 5px; padding-right: 5px;">
+                <div style="margin-bottom:2px;"  ng-repeat="unidad in ListaUnidades() | filter:FiltroVehiculo">
+                    <a href="#" style="margin:0px;" title="" class="list-group-item active" ng-click="cargarRecorrido(unidad)">
+                        <span style="width:300px; border-right: 1px solid white;"  ng-class="unidad.Entradas==0?'fa fa-pause':'fa fa-car'">
+                           <label for="" ng-bind="unidad.NombreCompleto"></label>
+                           <label style="float:right; font-size:10px;  margin-right:5px;" ng-bind="fromNow1(unidad.FechaHora)"></label>
+                        </span>
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel panel-default" style="margin-left: 0.5px!important; margin-bottom: -2px; margin-top: 2px; text-align: center;">
+
+
+                <!--------Atras-------->
+                <button type="button" class="btn btn-default btn-sm" ng-click="atras()">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </button>
+
+
+                <!-----Play----->
+                <button type="button" class="btn btn-default btn-sm" ng-click="play()">
+                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                </button>
+
+                <!-----Pausa---->
+                <button type="button" class="btn btn-default btn-sm" ng-click="pausaFnt()">
+                    <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+                </button>
+
+                <!-----Stop----->
+                <button type="button" class="btn btn-default btn-sm" ng-click="stopFnt()">
+                    <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+                </button>
+
+
+                <!-----Siguiente----->
+                <button type="button" class="btn btn-default btn-sm" ng-click="siguiente()">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </button>
+
+
+        </div>
+
+
+        <!--:::::::::::::::::::::::::::::::Calendarios:::::::::::::::::::::::::::-->
+
+        <div class="row" >
+                    <div class="col-md-12">
+                        Fecha Inicio:
+                        <input class="form-control" type="datetime-local" id="recorridoFechaDesde" name="input" ng-model="fechaDesde.value"
+                           placeholder="yyyy-MM-dd HH:mm:ss"  required />
+                    </div>
+
+                    <div class="col-md-12">
+                        Fecha Fin:
+                        <input class="form-control" type="datetime-local" id="recorridoFechaHasta" name="input" ng-model="fechaHasta.value"
+                           placeholder="yyyy-MM-dd HH:mm:ss"  required />
+                    </div>
+
+        </div>
+        <div class=" hidden-xs">
+            <div class="col-md-12" style="overflow-y: auto;  height: 38vh; max-height: 38vh; margin-bottom: -20px; padding-bottom: 0px;">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Velocidad</th>
+                        <th>Estado</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                            <tr bindonce ng-repeat="punto in ListaRecorridoTabla" ng-click="localizar(punto.Longitud,punto.Latitud,$index)">
+                                <td bo-bind="utcTimeToLocalTime(punto.FechaHora)"></td>
+                                <td bo-bind="punto.Velocidad"></td>
+                                <td>
+                                  <span class='fa fa-bus' title="{{punto.Ignicion==0?'Apagado':'Encendido'}}" ng-style="punto.Ignicion==0?{color:'red'}:{color:'green'}">
+                                  </span>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+    <!--Contendor del mapa y opciones-->
+    <div id="ContenedorMapa" style="margin-top: -0px !important; margin:0px; padding-left:2px;padding-right:4px; padding-bottom:-10px; " class="col-md-9">
+
+
+
+        <div id="divMapa"  >
+            <!--leaflet lf-center="center1()" controls="controls" markers="getMarker()" decorations="decorations" paths="Paths" geojson-nested="true" layers="layers"  height="89vh" width="100%"></leaflet-->
+            <leaflet lf-center="center1()" controls="controls" markers="getMarker()"  paths="Paths" decorations="decorations" geojson-nested="true" layers="layers"  height="90vh" width="100%"></leaflet>
+            <div class="panel panel-default" style="position: absolute; top:10px; left: 8vh; width: 120vh; background-color:#FDFF87;  ">
+                <div class="col-md-4"><label>  Fecha: <span ng-bind="utcTimeToLocalTime(posicionActual().FechaHora)"></span></label></div>
+                <div class="col-md-2"><label>    Vel: <span ng-bind="posicionActual().Velocidad"></span></label> </div>
+                <div class="col-md-3"><label>Longitud: <span ng-bind="posicionActual().Longitud"> </span></label> </div>
+                <div class="col-md-3"><label>Latitud: <span ng-bind="posicionActual().Latitud"> </span></label>  </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

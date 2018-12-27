@@ -1,0 +1,39 @@
+
+
+
+<div class="modal-header" ng-init="init();" >
+    <h3 class="modal-title">Editar de estados unidades</h3>
+
+</div>
+
+
+
+
+<div class="modal-body">
+    
+    <div class="row" >
+       
+
+        <div class="form-group">
+            <label for="" class="control-label">Estado Unidades:</label>
+            <input type="text" class="form-control" placeholder="Estado unidades" ng-model="estadounidad.Estado"   required/>
+        </div>
+
+        <div class="form-group">
+            <label for="" class="control-label">Observacion:</label>
+            <textarea name="" id="" class="form-control" placeholder="Observacion" ng-model="estadounidad.Observacion"    required></textarea><br>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+<div class="modal-footer">
+        <button title="Editar estado unidad" class="btn btn-primary" ng-click="editarEstadounidades()">Editar</button>
+    <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+
+</div>
+

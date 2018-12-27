@@ -1,0 +1,79 @@
+<div class="col-md-12">
+    <div class="modal-header" ng-init="init();">
+        <h3>Editar Motorista</h3>
+    </div>
+</div>
+
+<div class="modal-body">
+    
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="codigo" class="control-label">Codigo Conductor:</label>
+            <input class="form-control" placeholder="Codigo Conductor" ng-model="motorista.Codigo" type="text" name="codigo" id="codigo" required>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="" class="control-label">Estado:</label>
+            <select name="" id="" class="form-control"
+            ng-options="estado.id as estado.estado for estado in estados"
+            ng-model="motorista.Estado"></select>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="" class="control-label">Expiracion Licencia:</label>
+            <input class="form-control" placeholder="Fecha Expiracion" ng-model="motorista.FechaExp" type="date" name="" id="">
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="" class="control-label">Nombre de Motorista:</label>
+            <input type="text" class="form-control" placeholder="Nombre Motorista" ng-model="motorista.Nombre" required/>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="" class="control-label">Apellido de Motorista:</label>
+            <input type="text" class="form-control" placeholder="Apellido Motorista" ng-model="motorista.Apellido" required/>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="" class="control-label">Numero de Identidad:</label>
+            <input type="text" class="form-control" placeholder="Identidad" ng-model="motorista.Identidad" required/>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="" class="control-label">Direccion:</label>
+            <textarea name="" id="" class="form-control" placeholder="Direccion" ng-model="motorista.Direccion" required></textarea>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="" class="control-label">Numero de Telefono:</label>
+            <input type="tel" class="form-control" placeholder="Telefono" pattern=".{8,8}" ng-model="motorista.Telefono" required/>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="" class="control-label">Ficha:</label>
+            <input type="text" placeholder="Ficha" class="form-control" ng-model="motorista.Ficha" required=""/>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button title="Editar Motorista" class="btn btn-primary" ng-click="editarMotorista()">Editar</button>
+    <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+</div>

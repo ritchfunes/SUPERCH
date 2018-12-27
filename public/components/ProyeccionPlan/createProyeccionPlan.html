@@ -1,0 +1,84 @@
+
+
+
+
+
+
+
+        <div class="modal-header" ng-init="init()" >
+          <h3 class="modal-title" id="exampleModalLongTitle">Registro  Plan unidad </h3>
+         
+        </div>
+
+        <form >
+        <div class="modal-body">
+          
+                <div class="col-md-12 sabuesoContainer" >
+    
+                    
+                    <div class="row">
+                      
+
+                        <div class="form-group">
+                                <label for="" class="control-label">Total unidad:</label>
+                                <input type="text" class="form-control" placeholder="Total unidad" ng-model="ProyeccionPlanTotalUnidades"  required/>
+                            </div>
+                            <div class="form-group">
+                                    <label for="" class="control-label">Recarga:</label>
+                                    <input type="text" class="form-control" placeholder="Recarga" ng-model="ProyeccionPlanRecarga"  required/>
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="" class="control-label">Cantidad Recarga:</label>
+                                        <input type="text" class="form-control" placeholder="Cantidad Recarga"  ng-model="ProyeccionPlanCantidadRecarga" required/>
+                                    </div> 
+                            <div class="form-group">
+                                    <label for="" class="control-label">Fecha:</label>                       
+                                    <input type="date" class="form-control" placeholder="Fecha" ng-model="ProyeccionPlanFecha"   required/>
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="" class="control-label">Dia:</label>                       
+                                        <select name="" id="" class="form-control"
+                                      ng-model="ProyeccionPlanDia"  
+                                      ng-options="dia.dia as dia.dia for dia in dias"                            
+                                      required ></select>
+                                    </div>
+
+                      <div class="form-group">
+                                        <label for="" class="control-label">Destino:</label>                                       
+                                                <select class="form-control" 
+                                                ng-options="est.Nombre for est in listaViajeCompleto() track by est.ViajeCompletoId"  ng-model="ProyeccionPlanDestino"                       
+                                                >                                   
+                                                </select>
+                                              
+                                          
+                      </div>
+
+                      
+                      <div class="form-group"  >
+                            <button class="btn btn-primary" type="button"  ng-click="guardarProyeccionplan()"   >Guardar</button> 
+                            <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+                                                
+                        </div>
+                                  
+
+                    </div>
+                    
+        
+        </div>
+
+
+
+  </div>
+
+  <div class="modal-footer">
+
+       
+    </div>
+
+</form>
+
+<!--:::: FIN Agregar Estados Unidades-->
+
+

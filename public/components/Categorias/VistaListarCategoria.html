@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Categorias</h3>
+</div>
+
+<div ng-controller="CategoriaController" class="modal-body sabuesoContainer" ng-init="listarCategorias()">
+
+   <!--::::Input de Busqueda-->
+   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+   <input type="text" placeholder="Buscar Categoria" aria-describedby="basic-addon1" ng-model="FiltroCategoria" class="form-control"/>
+   </div>
+
+      <div class="sabuesoTable50">
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+               </tr>
+            </thead>
+               <tbody>
+                  <tr ng-repeat="categoria in listaCategorias() | filter:FiltroCategoria">
+                  <th>{{ categoria.Categoria }}</th>
+                  <th>{{ categoria.Descripcion }}</th>
+
+                  <th>
+                     <botton ng-hide="categoria.id == 1" ng-really-message="¿Desea eliminar esta Categoria?" ng-really-click="eliminarCategoria(categoria,categoria.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></botton>
+                  </th>
+                  </tr>
+               </tbody>
+            </table>
+      </div>
+</div>
+
+<div class="modal-footer">
+   <!--<div id="notificacion"></div>-->
+   <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cerrar</button>
+</div>

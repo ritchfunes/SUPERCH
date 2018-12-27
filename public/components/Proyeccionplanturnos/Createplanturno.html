@@ -1,0 +1,70 @@
+
+
+
+
+
+
+<!-- Modal -->
+<div class="" id="exampleModalCenter" ng-init="init()" >
+
+        <div class="modal-header" >
+          <h3 class="modal-title" id="exampleModalLongTitle">Registro  Plan turno</h3>
+         
+        </div>
+
+        <div class="modal-body">
+          
+                <div class="col-md-12 sabuesoContainer" >
+    
+                    <form >
+                    <div class="row">
+                      
+
+                        <div class="form-group">
+                                <label for="" class="control-label">Cantidad:</label>
+                                <input type="text" class="form-control" placeholder="Cantidad" ng-model="planTurnoCantidad"  required/>
+                            </div>
+                            <div class="form-group">
+                                    <label for="" class="control-label">Fecha:</label>                       
+                                    <input type="date" class="form-control" placeholder="Fecha" ng-model="planTurnoFecha"    required/>
+                                </div>
+
+
+                      <div class="form-group">
+                                        <label for="" class="control-label">Turnos:</label>
+                                        
+                                                <select class="form-control" ng-options="tur.Descripcion for tur in listaTurnos() track by tur.PK_Turno"  ng-model="planTurnoFK_Turno" required>
+                                     
+                                                </select>
+                                              
+                                          
+                      </div>
+
+                        <div class="form-group"  >
+    
+                            <button class="btn btn-primary" type="button" ng-click="guardarPlanturnos()"    >Guardar</button> 
+                            <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+
+                            
+                        </div>
+
+                      
+
+                    </div>
+                    </form>
+        
+        </div>
+
+       
+
+  </div>
+
+  
+   
+  <div class="modal-footer">
+    </div>
+
+</div>
+<!--:::: FIN Agregar Estados Unidades-->
+
+

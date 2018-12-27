@@ -1,0 +1,74 @@
+
+
+
+
+<!-- Modal -->
+
+<div class="modal-header" >
+        <h3 class="modal-title" id="exampleModalLongTitle">Editar Mecanico</h3>
+       
+      </div>
+    
+      <div class="modal-body" ng-init="init()">
+        
+              <div class="col-md-12 sabuesoContainer" >
+    
+                  <form >
+                  <div class="row">
+                      <div class="form-group">
+                          <label for="" class="control-label">Nombre:</label>
+                          <input type="text" class="form-control" placeholder="Nombre" ng-model="mec.Nombre"    required />
+                      </div>
+    
+                      <div class="form-group">
+                        <label for="" class="control-label">Apelido:</label>
+                        <input type="text" class="form-control" placeholder="Apelido" ng-model="mec.Apellido"    required />
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="" class="control-label">Telefono:</label>
+                        <input type="text" class="form-control" placeholder="Telefono" ng-model="mec.Telefono"     />
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="" class="control-label">Dirreccion:</label>
+                        <input type="text" class="form-control" placeholder="Dirreccion" ng-model="mec.Direccion"     />
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="" class="control-label">Identidad:</label>
+                        <input type="text" class="form-control" placeholder="Identidad" ng-model="mec.Identidad"     />
+                    </div>
+    
+                    <div class="form-group">
+                            <label for="" class="control-label">Estado:</label>
+                            
+                                    <select class="form-control" ng-options="est.Estado for est in listaEstadosUnidades() track by est.PK_Estado"                        
+                                    ng-model="dataEstados"  required >
+                         
+                                    </select>
+                                  
+                              
+                    </div>
+             
+                
+    
+    
+    
+                  </div>
+                  </form>
+      
+      </div>
+    
+    </div>
+      <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="editarMecanico()"    >Guardar</button>
+            <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+                 
+     </div>
+    
+   
+    
+    <!--:::: FIN Agregar Estados Unidades-->
+    
+    

@@ -1,0 +1,71 @@
+
+
+<script type="text/javascript" src="/javascripts/exportarexcel.js"></script>
+
+
+
+<div  ng-controller="unidadesdisponiblesCtrl" >
+<div class="modal-header" >
+        <h3 class="modal-title">Listado de unidades por semanal </h3>
+    </div>
+
+   
+    <br>
+ 
+    <div class=""    >
+ 
+
+          <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaunidadesdisposemanal', 'tabla unidades')" value="Exportar a excel">
+
+     
+        
+     </div>
+
+
+    <div class="modal-body sabuesoContainer" >
+            <h6>recomendacion filtrar por los dias de semana de lunes a viernes </h6>
+         <h3> inicio de semana Domingo {{diainiciosemana}} de  {{mesini}} fin de semana {{diafinsemana}} de {{mes}} </h3> 
+            <!--::::Input de Busqueda-->       
+     <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="date"  placeholder="Buscar fecha"   aria-describedby="basic-addon1" ng-model="Filtrofecha" ng-change="cambiofechasemana()"  class="form-control"/>
+    </div> 
+           
+           <div class="sabuesoTable50">
+               <table class="table table-striped" id="tablaunidadesdisposemanal">
+                  <thead>
+                     <tr>
+                        <th>Estado</th>
+                        <th>Domingo</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miercoles</th>
+                        <th>Jueves</th>
+                        <th>VIERNES</th>
+                        <th>Sabado</th>
+                     </tr>
+                  </thead>
+                     <tbody> 
+                        <tr ng-repeat="unidadesdisponibles in listaDisponibilidadunidadessemanal()">
+                        <th> {{ unidadesdisponibles.estado }} </th>
+                        <th> {{ unidadesdisponibles.Domingo  }}</th>
+                        <th> {{ unidadesdisponibles.Lunes }}</th>
+                        <th>  {{ unidadesdisponibles.Martes }} </th>
+                        <th> {{ unidadesdisponibles.Miecoles }}</th>
+                        <th> {{ unidadesdisponibles.Jueves }}</th>
+                        <th> {{ unidadesdisponibles.Viernes }}</th>
+                        <th> {{ unidadesdisponibles.Sabado }}</th>
+                     
+                       
+           
+                        </tr>
+                     </tbody>
+                  </table>
+            </div>
+           
+           
+            
+           </div>
+
+
+        </div>
+    

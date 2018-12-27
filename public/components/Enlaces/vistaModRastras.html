@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h3 class="modal-title">Modificar Rastra</h3>
+</div>
+
+
+
+<div class="modal-body">
+
+    <div class="col-md-12 sabuesoContainer" >
+        <form ng-submit="editarRastra()" class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Nombre Rastra:</label>
+                        <input type="text" class="form-control" placeholder="Nombres Rastra" ng-model="rastra" required/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Barcode:</label>
+                        <input type="text" class="form-control" placeholder="Barcode" ng-model="barcode" required/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Placa:</label>
+                        <input type="text" class="form-control" placeholder="Placa" ng-model="placa"/><br>
+                        <button class="btn btn-primary" type="submit">Modificar Rastra</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancelar</button>
+</div>

@@ -1,0 +1,68 @@
+
+
+<div class="modal-header">
+        <h3 class="modal-title">Listado de proyeccion de planes por unidad</h3>
+    </div>
+
+    <br>
+ 
+    <div class="" ng-controller="proyeccionPlanunidadesCtrl"   >
+    <button type="button" class="btn btn-primary" ng-click="showform()"     >
+            Agregar
+          </button>
+
+          <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaplanunidades', 'tabla unidades')" value="Exportar a excel">
+
+     
+     </div>
+
+
+    <div ng-controller="proyeccionPlanunidadesCtrl" class="modal-body sabuesoContainer" ng-init="listarProyeccionplanunidades()" >
+
+            <!--::::Input de Busqueda-->
+            <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+               <input type="text" placeholder="Buscar plan unidad" aria-describedby="basic-addon1" ng-model="FiltroPlanunidades" class="form-control"/>
+               </div>
+
+               <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="date"  placeholder="Buscar fecha"   aria-describedby="basic-addon1" ng-model="Filtrofecha"  ng-change="cambiofecha()" class="form-control"/>
+            </div>
+     
+            
+           <div class="sabuesoTable50">
+               <table class="table table-striped" id="tablaplanunidades">
+                  <thead>
+                     <tr>
+                        <th>Estado</th>
+                        <th>Cantidad</th>
+                        <th>Fecha</th>
+                        <th>Cabezal</th>
+                        <th>Activo</th>
+                     </tr>
+                  </thead>
+                     <tbody> 
+                        <tr ng-repeat="planunidad in listaProyeccionplanunidades() | filter:FiltroPlanunidades | filter:Filtrofecha ">
+                        <th> {{ planunidad.Estado }}</th>
+                        <th> {{ planunidad.Cantidad }}</th>
+                        <th> {{ planunidad.Fecha }}</th>
+                        <th> {{ planunidad.Cabezal }}</th>
+                        <th> {{ planunidad.Activo }}</th>
+                        <th>
+                           <botton  ng-really-message="¿Desea modificar  proyeccion plan unidade?" ng-really-click="modificarPlanUnidades(planunidad)"      class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                       </th>
+           
+                        <th>
+                           <botton   ng-really-message="¿Desea actualizar esta proyeccion plan unidades inactivo"  ng-really-click="eliminarPlanunidad(planunidad, planunidad.PK_PlanUnidades)"  class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                        </th>
+                       
+           
+                        </tr>
+                     </tbody>
+                  </table>
+            </div>
+           
+           
+            
+           </div>
+
+    

@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" id="container">
+
+        <caption><h4 style="text-align:center;font-size:26px">Unidades Excedieron mas de 75 Km</h4></caption>
+
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" placeholder="Buscar Unidad Con Exceso > 75" aria-describedby="basic-addon1" ng-model="FiltroExcedido" class="form-control"/>
+        </div>
+
+        <div style="overflow-y: auto; height:61vh; max-height:61vh; margin-bottom:10px; font-size: 90%;text-align:center">
+            <div class="table-responsive">
+                <table class="table" id="datatable">
+                    <thead>
+                    <tr>
+                        <th style="text-align:center;">Vehiculo</th>
+                        <th style="text-align:center;">Cantidad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="carro in vehiculosExcedidosMayor75 | filter:FiltroExcedido">
+                        <td>{{ carro.Vehiculo }}</td>
+                        <td>{{ carro.Cantidad }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2"></div>
+    <!--button type="button" ng-click="mayores75()" ng-hide="true">Test</button-->
+</div>

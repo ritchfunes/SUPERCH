@@ -1,0 +1,35 @@
+<div class="modal-header">
+ <h3 class="modal-title"> Registro de Talleres</h3>
+</div>
+
+<div class="modal-body">
+    <div class="col-md-12 sabuesoContainer">
+    <form >
+
+        <div class="row">
+            <div class="form-group">
+                <label for="" class="control-label" >Nombre Corto</label>
+                <input type="text" placeholder="Nombre Corto" maxlength="10" class="form-control" ng-model="Nombcorto" required>
+            </div>
+           
+
+            <div class="form-group">
+                    <label for="" class="control-label">Nombre Largo</label>
+                    <input type="text" placeholder="Nombre Largo" class="form-control" ng-model="nomblargo" required>
+                </div>
+
+
+
+                <div class="form-group">
+                        <button class="btn btn-primary" type="button" ng-click="guardarTaller()" >Guardar</button>
+                        <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="cancelar" class="btn btn-danger" ng-click="$dismiss()" >Cancelar</button>
+                    </div>
+        </div>
+
+      
+
+       
+    </form>
+
+    </div>
+</div>

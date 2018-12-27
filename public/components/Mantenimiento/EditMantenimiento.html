@@ -1,0 +1,135 @@
+<div class="modal-header">
+    <h3 class="modal-title">Editar Mantenimiento</h3>
+   </div>
+   
+   <div class="modal-body" ng-init="init()">
+       <div class="col-md-12 sabuesoContainer">
+       <form >
+   
+           <div class="row">
+               <div class="form-group">
+                   <label for="" class="control-label" >Planificado</label>
+                   <select name="" id="" class="form-control" required 
+                   ng-options=" plan.id  as plan.estadoplan for plan in planificar "
+                   ng-model="man.PLANIFICADO" required
+                 ></select>
+                </div>
+              
+   
+               <div class="form-group">
+                       <label for="" class="control-label">Fecha Planificacion</label>
+                       <input type="date" placeholder="Fecha Planificacion" class="form-control" ng-model="man.Fecha_Planificacion" >
+                   </div>
+   
+                   <div class="form-group">
+                    <label for="" class="control-label">Carburante</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" carbu.id  as carbu.estadocarburante for carbu in carburanteedit "
+                    ng-model="man.CARBURANTE"
+                     required
+                  ></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Tipo Manteniminento</label>
+                    <select name="" id="" class="form-control" required 
+                   ng-options="carbu.estadotipoman  as carbu.estadotipoman for carbu in tipomantenimientodata "
+                   ng-model="man.Tipo_Mantenimiento"
+                     required
+                  ></select>
+               
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Tipo Falla</label>
+                    <select name="" id="" class="form-control" required 
+                   ng-options="tip.Falla for tip in listaTipoFalla() track by tip.Pk_tipofalla"
+                    ng-model="datafalla"
+                    required
+                  ></select>
+                </div>
+   
+                <div class="form-group">
+                    <label for="" class="control-label">Modelo Unidad</label>
+                    <select name="" id="" class="form-control" required 
+                   ng-options=" und.Nombre_Vehiculo for und in listaModeloUnidades() track by und.PK_ModeloUnidades"
+                   ng-model="dataunidad"
+                    required
+                  ></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Kilometraje</label>
+                    <input type="text" placeholder="Kilometraje" class="form-control"  ng-model="man.Kilometraje" >
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Categoria</label>
+                    <select name="" id="" class="form-control" required 
+                   ng-options="carbu.estadocabezal  as carbu.estadocabezal for carbu in categoriadata "
+                   ng-model="man.Categoria"
+                   required
+                  ></select>
+               
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Motivo</label>
+                    <textarea name="" id="" class="form-control" placeholder="Motivo" ng-model="man.Motivo"  ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Fecha Ingreso</label>
+                    <input type="date" placeholder="Nombre Largo" class="form-control"  ng-model="man.Fecha_Ingreso" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Fecha Entrega</label>
+                    <input type="date" placeholder="Nombre Largo" class="form-control" ng-model="man.Fecha_Entrega"  required>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Conductores</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options="con.Nombre + ' '+ con.Apellido  for con in listaMotoristas() track by con.IdConductor"
+                    ng-model="dataconductor"
+                     required
+                  ></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Observaciones</label>
+                    <textarea name="" id="" class="form-control" placeholder="Observaciones" ng-model="man.Observaciones"  ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Mecanico</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options="meca.Nombre + ' '+ meca.Apellido  for meca in listaMecanico() track by meca.PKMecanico"
+                    ng-model="datamecanico"
+                     required
+                  ></select>
+                </div>
+
+
+                 
+                     
+           </div>
+   
+         
+   
+          
+       </form>
+   
+       </div>
+
+
+
+   </div>
+
+   <div class="modal-footer">
+        <div class="form-group">
+        <button class="btn btn-primary" type="button" ng-click="editarMantenimiento()" >Guardar</button>
+        <button data-dismiss="modal" data-toggle="tooltip" data-placement="right" title="cancelar" class="btn btn-danger" ng-click="$dismiss()" >Cancelar</button>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h3 class="modal-title"> Registro de Ubicaciones</h3>
+   </div>
+   
+   <div class="modal-body">
+       <div class="col-md-12 sabuesoContainer">
+       <form >
+   
+           <div class="row">
+               <div class="form-group">
+                   <label for="" class="control-label" >Codigo:</label>
+                   <input type="text" placeholder="Codigo" maxlength="10" class="form-control" ng-model="cod" required>
+               </div>
+              
+   
+               <div class="form-group">
+                       <label for="" class="control-label">Descripcion: </label>
+                       <input type="text" placeholder="Descripcion" class="form-control" ng-model="Descp" required>
+                   </div>
+   
+                   <div class="form-group">
+                    <label for="" class="control-label">Taller:</label>                       
+                     <select class="form-control" ng-options="tall.NombreCorto for tall in listaTaller() track by tall.PKTaller"  ng-model="tallPKTaller" required>                 
+                  </select>
+                      
+                 
+                </div>
+   
+                   <div class="form-group">
+                           <button class="btn btn-primary" type="button" ng-click="guardarUbicacion()" >Guardar</button>
+                           <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="cancelar" class="btn btn-danger" ng-click="$dismiss()" >Cancelar</button>
+                       </div>
+           </div>
+   
+         
+   
+          
+       </form>
+   
+       </div>
+   </div>

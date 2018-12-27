@@ -1,0 +1,59 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Marca de vehiculos</h3>
+</div>
+
+<br>
+<div ng-controller="marcavehiculoController"  >
+<div class="" >
+<button type="button" class="btn btn-primary" ng-click="showform()"   >
+        Agregar
+      </button>
+
+      <input type="button" class="btn btn-info"  onclick="tableToExcel('tablamarcavehiculo', 'tabla marcavehiculo')" value="Exportar a excel">
+
+ </div>
+
+
+<div  class="modal-body sabuesoContainer" ng-init="listarMarcaVehiculo()" >
+
+        <!--::::Input de Busqueda-->
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+           <input type="text" placeholder="Buscar Marca" aria-describedby="basic-addon1" ng-model="FiltroMarcavehiculo" class="form-control"/>
+           </div>
+       
+       <div class="sabuesoTable50">
+           <table class="table table-striped" id="tablamarcavehiculo">
+              <thead>
+                 <tr>
+                    <th>Marca</th>
+                    <th>Tipo Vehiculo</th>
+                    <th>Activo</th>
+                 </tr>
+              </thead>
+                 <tbody> 
+                    <tr ng-repeat="marca in listaMarcaVehiculo() | filter:FiltroMarcavehiculo">
+                    <th>{{ marca.Descripcion }}</th>
+                    <th>{{ marca.TipoVehiculo }}</th>
+                    <th>{{ marca.Activo }}</th>
+                    <th>
+                       <botton  ng-really-message="¿Desea modificar esta Marca?" ng-really-click="modificarmarcavehiculo(marca)"   class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                   </th>
+       
+                    <th>
+                       <botton   ng-really-message="¿Desea actualizar esta marca a inactivo" ng-really-click="eliminarMarcaVehiculo(marca, marca.PK_MarcaVehiculo)"   class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                    </th>
+                   
+       
+                    </tr>
+                 </tbody>
+              </table>
+        </div>
+       
+       
+        
+       </div>
+
+    </div>
+
+

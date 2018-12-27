@@ -1,0 +1,38 @@
+<div ng-init="init()">
+   <!--:::::::::::::::::::::::::Modal Guardar Referencias:::::::::::::::::::::::::::::::::::::-->
+   <div class="modal-header">
+      <h3 class="modal-title">Crear Referencia</h3>
+   </div>
+
+   <div class="modal-body">
+      <form id="Form-Referencia-Crear">
+         <div class="col-md-6">
+            <input type="text" id="nombreReferencia" placeholder="Nombre Referencia" ng-model="nombre" style="margin-top:10px;" data-toggle="popover" data-placement="bottom" data-content="Ingrese Nombre" class="form-control" required/>
+            <textarea style="margin-top:10px;" id="descripcionReferencia" placeholder="Descripcion" ng-model="descripcion" data-toggle="popover" data-placement="bottom" data-content="Ingrese Descripcion" class="form-control" required></textarea>
+            Latitud
+            <input type="text" style="" id="latitudReferencia" placeholder="Latitud" ng-model="latitud" class="form-control"/>
+            Longitud
+            <input type="text" style="" id="longitudReferencia" placeholder="Longitud" ng-model="longitud" class="form-control"/>
+
+         </div>
+
+         <div class="col-md-6">
+            <label style="" class="form-label">Icono Referencia</label><br/>
+            <div id="my-icon-select"></div><br/>
+            Categoria
+            <select class="form-control" name="repeatSelect" ng-options="categoria.Categoria for categoria in availableOptions() track by categoria.id" ng-model="dataCategorias" ></select>
+            <!-- <select class="form-control" name="repeatSelect"   ng-model="dataCategorias.repeatSelect" ng-init="dataCategorias.repeatSelect = '1'">
+                <option ng-repeat="option in availableOptions()" value="{{option.id}}">{{option.Categoria}}</option>
+             </select>-->
+            Estado
+            <select id="estadoReferencia" style="" ng-model="visible" class="form-control">
+               <option value="1" selected>VISIBLE</option>
+               <option value="0">NO VISIBLE</option>
+            </select><br/>
+         </div>
+
+         <botton type="submit" ng-click="guardar()" class="btn btn-primary">Guardar</botton>
+         <botton data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Tooltip on left" class="btn btn-danger" ng-click="$dismiss()">Cancelar</botton>
+      </form>
+   </div>
+</div>

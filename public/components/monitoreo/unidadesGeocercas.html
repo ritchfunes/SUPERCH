@@ -1,0 +1,42 @@
+<div class="row">
+    <h4 style="text-align:center;font-size:26px">Unidades En Geocercas</h4>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" placeholder="Buscar Geocerca" aria-describedby="basic-addon1" ng-model="Filtrogeocerca" class="form-control"/>
+        </div>
+
+        <div class="table-responsive" style="overflow-y: auto; height:61vh; max-height:61vh; margin-bottom:10px;" id="unidadesXgeocerca">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Geocerca</th>
+                    <th>Cantidad</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="geocerca in unidadesEnGeocercas | filter:Filtrogeocerca | orderBy:'-Cantidad'">
+                    <td>{{ geocerca.NombreGeocerca }}</td>
+                    <td>{{ geocerca.Cantidad }}</td>
+                    <td>
+                        <button ng-click="detalleUnidades(geocerca)" class="btn btn-warning" title="Detalle unidades"><span class="fa fa-wpforms"></span></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4">Total Vehiculos en Geocercas: <span class="badge" ng-bind="totalEnGeocercas"></span></div>
+    <div class="col-xs-4">
+        <button type="button" class="btn btn-primary pull-right" ng-click="exports()">Exportar</button>
+    </div>
+    <div class="col-xs-2"></div>
+</div>

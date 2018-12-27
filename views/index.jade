@@ -1,0 +1,24 @@
+extends layout
+
+
+head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+
+    block content
+        .container-fluid
+            .row(style="padding-top:8%;")
+                .col-md-4.col-md-offset-7
+                    .panel.panel-primary
+                        .panel-heading
+                            p Iniciar Sesion
+                        .panel-body
+                            img.img-responsive(src="/assets/img/Logo.png")
+                            form(action="/login" method="post" style="margin-bottom:30px;")
+                                input.form-control(type="email" name="username" style="border-radius:0px; margin-top:10px;" placeholder="Ejemplo@gpsandsecurity.com")
+                                input.form-control(type="password" name="password" style="border-radius:0px; margin-top:10px;" placeholder="clave" )
+                                input.btn.btn-primary(type="submit" style="border-radius:0px; margin-top:10px;" value="Iniciar Sesion")
+                    #mensaje.alert.alert-success()
+
+
+

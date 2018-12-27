@@ -1,0 +1,121 @@
+
+<div class="row" >
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+        <h1 class="text-center">Mantenimiento de vehiculos</h1>
+    </div>
+    <div class="col-xs-2"></div>
+</div>
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="mantenimiento-tab" data-toggle="tab" href="#mantenimiento" role="tab" aria-controls="mantenimiento" aria-selected="true"> Mantenimientos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="marca
+        -tab" data-toggle="tab" href="#marca" role="tab" aria-controls="marca" aria-selected="false">Marca</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="modelo-tab" data-toggle="tab" href="#modelo" role="tab" aria-controls="modelo" aria-selected="false">Modelo </a>
+      </li>
+    <li class="nav-item">
+      <a class="nav-link" id="modelounidad-tab" data-toggle="tab" href="#modelounidad" role="tab" aria-controls="modelounidad" aria-selected="false"> Unidades</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="tipofalla-tab" data-toggle="tab" href="#tipofalla" role="tab" aria-controls="tipofalla" aria-selected="false">Tipo Falla</a>
+    </li>
+  <li class="nav-item">
+    <a class="nav-link" id="taller-tab" data-toggle="tab" href="#taller" role="tab" aria-controls="taller" aria-selected="false" > Taller</a>
+  </li>
+  
+  <li class="nav-item">
+      <a class="nav-link" id="ubicacion-tab" data-toggle="tab" href="#ubicacion" role="tab" aria-controls="ubicacion" aria-selected="false" > Ubicacion</a>
+  </li>
+  <li class="nav-item">
+        <a class="nav-link" id="mecanico-tab" data-toggle="tab" href="#mecanico" role="tab" aria-controls="mecanico" aria-selected="false" > Mecanico</a>
+  </li> 
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade" id="mantenimiento" role="tabpanel" aria-labelledby="mantenimiento-tab">
+ <!--
+        <div  ng-include src="'components/Mantenimiento/showMantenimiento.html'"  >
+
+        </div>
+       -->
+
+    </div>
+    <div class="tab-pane fade" id="marca" role="tabpanel" aria-labelledby="marca-tab">
+ 
+ 
+      <div  ng-include src="'components/MarcaVehiculo/showMarcaVehiculo.html'"  >
+
+      </div>
+  
+
+  </div>
+  <div class="tab-pane fade" id="modelo" role="tabpanel" aria-labelledby="modelo-tab">
+ 
+
+    <div  ng-include src="'components/ModeloVehiculo/showModeloVehiculo.html'"  >
+
+    </div>
+  </div>
+    <div class="tab-pane fade" id="modelounidad" role="tabpanel" aria-labelledby="modelounidad-tab">
+ 
+   <!--
+        <div  ng-include src="'components/ModeloUnidades/ShowModeloUnidades.html'"  >
+
+        </div>
+      -->
+    </div>
+    <div class="tab-pane fade" id="tipofalla" role="tabpanel" aria-labelledby="tipofalla-tab">
+    
+        <div  ng-include src="'components/TipoFalla/showTipofalla.html'"  >
+
+        </div>
+      
+  <!-- 
+      <div  ng-include src="'components/tipofallatest/showfalla.html'"  >
+
+      </div>
+      -->
+    </div>
+  
+   <div class="tab-pane fade" id="taller" role="tabpanel" aria-labelledby="taller-tab">
+       
+        <div ng-include src="'components/Taller/ShowTaller.html'" > 
+
+        </div>
+
+      
+   </div>
+
+   <div class="tab-pane fade" id="ubicacion" role="tabpanel" aria-labelledby="ubicacion-tab">
+      
+       <div ng-include src="'components/Ubicacion/ShowUbicacion.html'" > 
+
+       </div>
+
+      
+  </div>
+
+  <div class="tab-pane fade" id="mecanico" role="tabpanel" aria-labelledby="mecanico-tab">
+      <!-- 
+       <div ng-include src="'components/Mecanico/showMecanico.html'" > 
+
+       </div>
+      
+       -->
+     
+  </div>
+
+  </div>
+
+
+
+
+
+
+  
+

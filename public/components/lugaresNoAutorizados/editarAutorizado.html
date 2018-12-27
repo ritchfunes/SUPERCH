@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3 class="modal-title">Modificar Lugar Autorizado</h3>
+</div>
+
+<div class="modal-body sabuesoContainer" ng-init="init()">
+    <!--:::::::::::::::::::::::::Modal Modificar Referencias:::::::::::::::::::::::::::::::::::::-->
+
+    <div class="">
+        <form id="Form-Referencia-Modificar">
+            <div class="col-md-6">
+                <Label id="nombreReferencia" ng-model="nombre" style="margin-top:10px;" class="form-label">Referencia: {{referencia.Nombre}}</Label>
+
+
+            </div>
+            <div class="col-md-6">
+                <label>Radio:
+                    <input class="form-control" type="number" ng-model="referencia.Radio" required>
+                </label>
+            </div>
+            <div class="col-md-12">
+                <botton ng-click="modificar()" class="btn btn-primary">Modificar</botton>
+            </div>
+
+            <!--<botton type="submit" data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Tooltip on left" class="btn btn-danger">Cancelar</botton>-->
+        </form>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancelar</button>
+</div>

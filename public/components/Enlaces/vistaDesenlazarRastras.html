@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title">Desenlazar Rastras</h3>
+</div>
+
+<div class="modal-body sabuesoContainer" ng-init="listarEnlazados()">
+    <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" placeholder="Buscar Unidad" aria-describedby="basic-addon1" ng-model="FiltroUnidad" class="form-control"/>
+    </div>
+
+    <div class="sabuesoTable50">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Seleccion</th>
+                <th>Rastra</th>
+                <th>Unidad</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="unidad in listaEnlazados | filter: FiltroUnidad | orderBy:'Rastra'">
+                <th><input type="radio" name="selectedUnidad" ng-model="$parent.idEnlace" ng-value="unidad"></th>
+                <th>{{unidad.Rastra}}</th>
+                <th>{{unidad.Nombre_Vehiculo}}</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="desenlazar()">Desenlazar</button>
+    <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cerrar</button>
+</div>

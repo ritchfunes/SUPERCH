@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Notificaciones</h3>
+</div>
+
+<div  class="modal-body sabuesoContainer" ng-init="listarAlertas()">
+
+   <!--::::Input de Busqueda-->
+   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+   <input type="text" placeholder="Buscar Alerta" aria-describedby="basic-addon1" ng-model="search.$"  class="form-control"/>
+   </div>
+
+      <div class="sabuesoTable50" >
+         <table class="table table-striped">
+           <thead>
+             <tr>
+               <th>Nombre Alerta</th>
+               <th>Opciones</th>
+               </tr>
+           </thead>
+           <tbody>
+             <tr ng-repeat="alerta in listaAlertas() | toArray:false | filter:search">
+             <th>{{ alerta[0].nombre }}</th>
+             <th class="col-md-4">
+               <center>
+                <botton ng-really-message="¿Desea eliminar esta Alerta?" ng-really-click="eliminarAlerta(alerta,alerta[0].Id)" class="btn btn-danger" uib-tooltip="Eliminar alerta" tooltip-class="customClass"><span class="glyphicon glyphicon-remove"></span></botton>
+                <botton ng-click="detalleAlerta(alerta)" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open" uib-tooltip="Ver detalle alerta" tooltip-class="customClass"></span></botton>
+                <botton  class="btn btn-warning" ng-click="editarAlerta(alerta)"><span class="glyphicon glyphicon-cog" uib-tooltip="Editar alerta" tooltip-class="customClass"></span></botton>
+               </center>
+            </th>
+            </tbody>
+          </table>
+      </div>
+</div>
+<div class="modal-footer">
+   <!--<div id="notificacion"></div>-->
+   <button class="btn btn-warning" type="button" ng-click="cancel()">Cerrar</button>
+</div>

@@ -1,0 +1,154 @@
+
+
+
+
+
+
+/**
+ * Created by Walter Suazo on 10/07/2015.
+ */
+
+var express = require('express');
+var unidadesModel = require('../models/Unidades');
+var moment = require('moment');
+moment.locale('es',{
+    relativeTime:{
+        s   :'%d S',
+        m   :'1 m',
+        mm  :'%d m',
+        h   :'1 H',
+        hh  :'%d H',
+        d   :'1 d',
+        dd  :'%d d',
+        M   :'1 M',
+        MM  :'%d M',
+        y   :'1 Y',
+        yy  :'%d Y'
+    }
+});
+
+
+exports.getAll= function(req,res,next){
+    if (req.empresa == 'undefined')
+    {
+        res.render('error');
+
+        return;
+    }
+    else{
+        var data= req.empresa;
+    }
+
+    unidadesModel.getUltimasPosiciones(data,function(error,data){
+        if (error)
+        {
+            res.render('error');
+        } else
+        if (typeof data !== 'undefined' &&  data.length >0 )
+        {
+            info =[];
+            for( var i in data)
+            {
+                fila = data[i]
+                fila.Tiempo=moment(fila.FechaHora,"YYYY-MM-DD hh:mm:ss").fromNow(true)
+                Fila=fila
+
+                info.push(Fila)
+            }
+            res.send({
+
+
+                title : "Listado Unidades",
+                info : data
+            });
+        }else
+	{
+		res.send({})
+	}
+    });
+
+}
+
+exports.Update= function(req,res)
+{
+    imei = req.body.imei;
+    conductor  = req.body.conductor;
+    vehiculo = req.body.vehiculo;
+    icono = req.body.icono;
+    data =
+    {
+
+        FK_ConductoresId:conductor,
+        Nombre_Vehiculo:vehiculo,
+        FK_IconoId:icono
+    }
+    unidadesModel.Update(data,imei,function(err,data){
+        if(err){
+            console.log(err);
+            res.send({err:1});
+        }else{
+            res.send({result:'ok',info:data});
+        }
+
+    });
+}
+
+exports.post=function(req,res)
+{
+  fecha = moment.utc().format();
+  conductor=req.body.conductor;
+  data=
+  {
+    imei:req.body.imei,
+    FK_ModeloId:req.body.modelo,
+    Nombre_Vehiculo:req.body.nombre,
+    Activo:req.body.activo,
+    FK_IconoId:req.body.icono,
+    FechaCreacion:fecha ,
+    FK_ConductoresId:conductor
+  }
+  unidadesModel.crear(data,function(err,data){
+    if(err)
+    {
+      res.sendStatus(500);
+    }else
+    {
+      res.sendStatus(200);
+    }
+  });
+}
+
+exports.delete=function(req,res){
+  id=req.body.id;
+  unidadesModel.delete(id,function(error,data){
+    if(error)
+    {
+      console.log(error);
+      res.sendStatus(500);
+    }else
+    {
+      res.sendStatus(200);
+    }
+
+  });
+
+}
+
+exports.getConductores=function(req,res){
+    if(typeof  req.empresa==='undefined'){
+        res.sendStatus(400);
+    }else{
+        empresa=req.empresa;
+        unidadesModel.getConductores(empresa,function(error,data){
+            if(error){
+                console.log(error);
+                res.sendStatus(500);
+            }else{
+                res.send({
+                    title:"Conductores",
+                    info:data
+                });
+            }
+        });
+    }
+}

@@ -1,0 +1,239 @@
+
+
+
+<div ng-controller="Pizarron" ng-init="ActualizarUnidades();listarMotoristas()" style="padding-top:10px;" class="row">
+
+
+    <div id="BarraVertical" style="font-size: 90%;" class="col-md-4">
+
+        <div   style="height: 26vh; max-height:26vh;">
+            <div>
+                <button class="btn btn-primary btn-sm" ng-show="rol == 1" ng-click="openModalEmpresas()">
+                    <span class="glyphicon glyphicon-tasks"></span>
+                </button>
+
+                <img ng-src="{{logoSocio}}" id="Logo" style="max-height: 130px; height:130px;" class="img-responsive"/>
+            </div>
+
+            <!--Busqueda-->
+            <div class="col-md-12 input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" placeholder="Buscar Vehiculo" aria-describedby="basic-addon1" ng-model="FiltroVehiculo" class="form-control"/>
+            </div>
+
+        </div>
+
+        <!--Listado Vehiculos-->
+        <div style="overflow-y: auto; height:50vh; max-height:50vh; margin-top:5vh; margin-bottom:1vh;" >
+
+            <div ng-repeat="unit in ListaUnidades() | filter:FiltroVehiculo" style="margin-bottom:-15px;" >
+                <div class="panel panel-primary">
+                    <div class="panel-heading">{{ unit.Vehiculo }} | {{ unit.Conductor + " " + unit.apellido }}
+                        <span ng-click="open('sm',unit.Vehiculo,unit.IdConductor,unit.Conductor, unit.apellido,unit.Imei,unit.url)" class="glyphicon glyphicon-cog"></span>
+                    </div>
+                    <div class="panel-body" style=" padding-top: 0px; padding-bottom: 0px;" >
+                        <br/>
+                        <div class="col-xs-3" style="margin-left:-15px; margin-right:10px;" >
+                            <img ng-src="{{ unit.url }}" alt="Description"/>
+                        </div>
+                        <div class="col-xs-9">Fecha Inicio {{ utcTimeToLocalTime(unit.FechaCreacion) }}<br/>Kilometraje   {{ unit.km }}<br/>Vel. {{ unit.Velocidad }}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-12">
+            <div role="alert" class="alert alert-success">ultimo inicio de sesion {{ utcTimeToLocalTime(ultimoInicio) }}</div>
+        </div>
+    </div>
+
+
+    <div style="border: 0px solid #4c6079; text-align:center;" class="col-md-4">
+        <!--div-- id="PastelKilometraje" style="height:45vh; max-height:45vh;"></div-->
+        <!--<br>
+        <div id="UnidadesLimiteVelocidad">
+        <caption><h4 style="text-align:center;">Unidades Excedieron Limite Velocidad</h4></caption>
+        <div style="overflow-y: auto; height:30vh; max-height:30vh; margin-bottom:10px; font-size: 90%;">
+          <div class="table-responsive">
+
+            <table class="table ">
+
+              <thead>
+              <tr>
+                <th>Vehiculo</th>
+                <th>Cantidad</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="carro in vehiculosExcedidos" ng-class="carro.Cantidad>5?'label-danger':''">
+                <td>{{ carro.Vehiculo }}</td>
+
+                <td>{{ carro.Cantidad }}</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div><hr>
+      </div>
+        <div id="UnidadeDetenidas">
+          <caption><h4 style="text-align:center;">Unidades Detenidas</h4></caption>
+          <div style="overflow-y: auto; height:35vh; max-height:35vh; margin-bottom:10px; font-size: 90%;">
+            <div class="table-responsive">
+
+              <table class="table ">
+
+                <thead>
+                <tr>
+                  <th>Vehiculo</th>
+                  <th>Ubicacion</th>
+                  <th>Tiempo</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="carro in vehiculosDetenidos" ng-class="carro.Minutos>60?'label-warning':''">
+                  <td>{{ carro.Vehiculo }}</td>
+                  <td>{{ (carro.Ubicacion) }}</td>
+                  <td>{{ carro.Tiempo }}</td>
+
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><hr>
+        </div>-->
+        <!--div id="HistoricoVelocidad" style="height:45vh; max-height:45vh;"></div-->
+        <h3>Unidades sin Reportar</h3>
+        <jqx-grid id="jqxgrid"  jqx-create="createWidget" jqx-settings="gridSettings" style="margin-left: auto;margin-right: auto;"></jqx-grid>
+        <div class="col-xs-12" ng-show="createWidget">
+            <p></p>
+            <input class="btn btn-primary" type="button" value="Export to Excel" id='excelExport' ng-click="excelExport()"/>
+            <input class="btn btn-primary" type="button" value="Export to HTML" id='htmlExport' ng-click="htmlExport()"/>
+            <input class="btn btn-primary" type="button" value="Export to PDF" id='pdfExport' ng-click="pdfExport()"/>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4" id="BarraNotificaciones">
+        <div style="overflow-y: auto; height:23vh;">
+            <h3>Avisos</h3>
+        </div>
+        <caption><h4 style="text-align:center;">Comandos enviados</h4></caption>
+        <div style="overflow-y: auto; height:25vh; max-height:25vh; margin-bottom:10px; font-size: 90%;">
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+
+                    <thead>
+                    <tr>
+                        <th>Vehiculo</th>
+                        <th>Fecha</th>
+                        <th>Comando</th>
+                        <th>Respuesta</th>
+                        <!--th Respuesta-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="evento in eventos">
+                        <td>{{ getMensaje(evento.mensaje).vehiculo }}</td>
+                        <td>{{ utcTimeToLocalTime(evento.fecha) }}</td>
+                        <td>{{ getMensaje(evento.mensaje).comando }}</td>
+                        <td>{{ evento.respuesta }}</td>
+                        <!--td {{ parsear(evento.Mensaje) }}-->
+                        <!--td {{ -- moment.utc()}}-->
+                        <!--td --------------->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><hr>
+        <caption><h4 style="text-align:center;">Eventos recibidos</h4></caption>
+        <div style="overflow-y: auto; height:25vh; max-height:25vh; border:1px solid;">
+            <div class="table-responsive">
+                <table class="table table-striped">
+
+                    <thead>
+                    <tr>
+                        <th>Vehiculo</th>
+                        <th>Fecha</th>
+                        <th>Evento</th>
+                        <!--th Respuesta-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="even in Ev">
+                        <td>{{ even.vehiculo }}</td>
+                        <td>{{ utcTimeToLocalTime(even.FechaHora) }}</td>
+                        <td>{{ even.nombre }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="openModalEmpresas">
+        <div class="modal-header">
+            <h3 class="modal-title">Vista Empresas</h3>
+        </div>
+        <div class="modal-body">
+            <div  >
+                <!--Busqueda-->
+                <div style="margin-bottom:10px;" class="col-md-12 input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" placeholder="Buscar Empresa" aria-describedby="basic-addon1" ng-model="nombreEmpresa" class="form-control"/>
+                </div>
+                <div style="height: 55vh; max-height: 55vh; overflow-y: auto;">
+                    <uib-accordion close-others="oneAtATime" >
+                        <i class="col-md-offset-5 fa fa-refresh fa-spin fa-5x" ng-show="listadoEmpresas == null"></i>
+                        <uib-accordion-group ng-repeat="empresa in listadoEmpresas | filter:nombreEmpresa " heading="{{$index + 1 + '. '+empresa.Nombre}}" ng-click="listarUsuarios(empresa)">
+                                <i class="fa fa-refresh fa-spin fa-4x" ng-show="empresa.usuarios===undefined"></i>
+                                <div ng-repeat="usuario in empresa.usuarios">
+                                    <a href="#" ng-click="generarAcceso(empresa,usuario)"> {{usuario.Usuario}}</a>
+                                </div>
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" ng-click="ok()" class="btn btn-primary">OK</button>
+            <button type="button" ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Configuracion Vehiculo</h3>
+        </div>
+        <div class="modal-body" ng-init="init()">
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="textinput" class="control-label">Nombre Vehiculo</label>
+                <input id="textinput" name="textinput" type="text" placeholder="placeholder" ng-model="vehiculoSeleccionado" class="form-control input-md"/>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="textinput" class="control-label">Nombre Conductor</label>
+                <!--<input id="textinput" name="textinput" type="text" placeholder="placeholder" ng-model="conductorSeleccionado" class="form-control input-md"/>-->
+                <select class="form-control" ng-options="conductor.Nombre+' '+conductor.Apellido for conductor in conductoresDisponibles track by conductor.IdConductor" ng-model="conductorSelected" >
+                </select>
+
+            </div>
+            <div class="form-group" style="margin-bottom: 70px;">
+                <label class="control-label">Icono Vehiculo</label>
+                <div id="my-icon-select2"></div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" ng-click="ok()" class="btn btn-primary">OK</button>
+            <button type="button" ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+
+</div>

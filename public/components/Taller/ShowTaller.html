@@ -1,0 +1,52 @@
+<div class="modal-header" >
+    <h3 class="modal-title">Listado de Talleres</h3>
+
+</div>
+<br>
+<div ng-controller="TallerController">
+    <button type="button" class="btn btn-primary" ng-click="showform()">
+        Agregar
+    </button>
+
+    <input type="button" class="btn btn-info" onclick="tableToExcel('tablataller', 'tabla taller')" 
+     value="Exportar a Excel">
+
+     <div class="modal-body sabuesoContainer" ng-init="listarTaller()">
+                   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" placeholder="Buscar Taller" aria-describedby="basic-addon1" ng-model="FiltroTaller" class="form-control"/>
+                   </div>
+
+                   <div class="sabuesoTable50">
+                     <table class="table table-striped" id="tablataller">
+                         <thead>
+                            <tr>
+                                <th>Nombre Corto</th>
+                                <th>Nombre Largo</th>
+                                <th>Activo</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="tall in listaTaller() | filter:FiltroTaller ">
+                                 <th>{{tall.NombreCorto}}</th>
+                                 <th>{{tall.NombreLargo}}</th>
+                                 <th>{{tall.ACTIVO }}</th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea modificar el taller?" ng-really-click="modificartaller(tall)"  class="btn btn-success" >
+                                        <span class="glyphicon glyphicon-pencil"></span></button>
+                                 </th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea Inactivar el taller?" ng-really-click="eliminarTaller(tall , tall.PKTaller)" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                 </th>
+                             </tr>
+
+                         </tbody>
+
+                     </table>
+                   </div>
+         </div>
+
+     </div>
+
+</div>

@@ -1,0 +1,52 @@
+<div class="modal-header" ng-init="init()">
+    <h3 class="modal-title">Ver Lugares Autorizados</h3>
+</div>
+
+<div class="modal-body">
+    <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" placeholder="Buscar Referencia" aria-describedby="basic-addon1" ng-model="FiltroReferencias" class="form-control"/>
+    </div>
+
+    <div class="sabuesoTable50">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <!--th id-->
+                <th>Referencia</th>
+                <th>Descripcion</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+                <th>Radio</th>
+                <th>Categoria</th>
+                <th>Icono</th>
+                <th>Visible</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="referencia in getLugaresAutorizados() | filter:FiltroReferencias">
+                <th>{{ referencia.Nombre }}</th>
+                <th>{{ referencia.Descripcion }}</th>
+                <th>{{ referencia.Latitud }}</th>
+                <th>{{ referencia.Longitud }}</th>
+                <th>{{referencia.Radio}}</th>
+                <th>{{referencia.Categoria}}</th>
+                <th><img ng-src="{{ referencia.url }} " style="width: 32px; height: 32px"/></th>
+                <th>{{ referencia.Visible }}</th>
+                <!--<th>
+                    <botton title="Localizar" ng-really-message="¿Desea ver la referencia en el mapa?" ng-really-click="localizar(referencia)" class="btn btn-warning"><span class="glyphicon glyphicon-screenshot"></span></botton>
+                </th>-->
+                <th>
+                    <botton title="Modificar" ng-click="modificar(referencia)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></botton>
+                </th>
+                <th>
+                    <botton title="Eliminar" ng-really-message="¿Desea eliminar esta referencia autorizada?" ng-really-click="eliminar(referencia,referencia.ParadasId)" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span></botton>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancelar</button>
+</div>

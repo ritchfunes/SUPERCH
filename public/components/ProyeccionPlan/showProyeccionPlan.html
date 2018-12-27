@@ -1,0 +1,74 @@
+
+<script type="text/javascript" src="/javascripts/exportarexcel.js"></script>
+
+
+
+<div class="modal-header">
+        <h3 class="modal-title">Listado de proyeccion de planes </h3>
+    </div>
+
+    <br>
+ 
+    <div class="" ng-controller="ProyeccionPlanCtrl"   >
+    <button type="button" class="btn btn-primary" ng-click="showform()"     >
+            Agregar
+          </button>
+
+
+          <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaproyeccionplan', 'tabla unidades')" value="Exportar a excel">
+
+     </div>
+
+
+    <div ng-controller="ProyeccionPlanCtrl" class="modal-body sabuesoContainer" ng-init="listarProyeccionPlan()" >
+
+            <!--::::Input de Busqueda-->
+            <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+               <input type="text" placeholder="Buscar plan turno" aria-describedby="basic-addon1" ng-model="FiltroproyeccionPlan" class="form-control"/>
+               </div>
+           
+               <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="date"  placeholder="Buscar fecha"   aria-describedby="basic-addon1" ng-model="Filtrofecha"  ng-change="cambiofecha()" class="form-control"/>
+            </div>
+
+           <div class="sabuesoTable50">
+               <table class="table table-striped" id="tablaproyeccionplan">
+                  <thead>
+                     <tr>
+                        <th>Destino</th>
+                        <th>Dia</th>
+                        <th>Fecha</th>
+                        <th>Total unidades</th>
+                        <th>Recarga</th>
+                        <th>Cantidad recarga</th>
+                        <th>Activo</th>
+                     </tr>
+                  </thead>
+                     <tbody> 
+                        <tr ng-repeat="proyeccionplan in listaProyeccionPlan() | filter:FiltroproyeccionPlan | filter:Filtrofecha">
+                        <th> {{ proyeccionplan.Destino }}</th>
+                        <th> {{ proyeccionplan.Dia }}</th>
+                        <th> {{ proyeccionplan.Fecha }}</th>
+                        <th> {{ proyeccionplan.TotalUnidades }}</th>
+                        <th> {{ proyeccionplan.Recarga }}</th>
+                        <th> {{ proyeccionplan.CantidadRecarga }}</th>
+                        <th> {{ proyeccionplan.Activo }}</th>
+                        <th>
+                           <botton  ng-really-message="¿Desea modificar esta proyeccion?" ng-really-click="modificarProyeccionPlan(proyeccionplan)"     class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                       </th>
+           
+                        <th>
+                           <botton   ng-really-message="¿Desea actualizar esta proyeccion a inactivo" ng-really-click="eliminarproyeccionPlan(proyeccionplan, proyeccionplan.PK_Plan)"    class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                        </th>
+                       
+           
+                        </tr>
+                     </tbody>
+                  </table>
+            </div>
+           
+           
+            
+           </div>
+
+    

@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Motoristas</h3>
+</div>
+
+<div class="modal-body sabuesoContainer" ng-controller="motoristaController" ng-init="listarMotoristas()">
+
+   <!--::::Input de Busqueda-->
+   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+   <input type="text" placeholder="Buscar Motorista" aria-describedby="basic-addon1" ng-model="FiltroMotorista" class="form-control"/>
+   </div>
+
+      <div class="sabuesoTable50">
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                   <th>Codigo</th>
+                   <th>Nombre</th>
+                   <th>Identidad</th>
+               </tr>
+            </thead>
+               <tbody>
+                  <tr ng-repeat="motorista in listaMotoristas() | filter:FiltroMotorista">
+                    <th>{{ motorista.Codigo }}</th>
+                    <th>{{ motorista.Nombre +" "+ motorista.Apellido }}</th>
+                    <th>{{ motorista.Identidad }}</th>
+                    <th>
+                        <botton ng-hide="motorista.IdConductor == 1" ng-really-message="¿Desea modificar este motorista?" ng-really-click="modificarMotorista(motorista)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></botton>
+                    </th>
+                  </tr>
+               </tbody>
+            </table>
+      </div>
+</div>
+<div class="modal-footer">
+   <!--<div id="notificacion"></div>-->
+   <button class="btn btn-danger" type="button" ng-click="$dismiss()">Cerrar</button>
+</div>

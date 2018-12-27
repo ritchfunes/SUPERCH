@@ -1,0 +1,61 @@
+
+<div class="modal-header">
+        <h3 class="modal-title">Listado de Turnos</h3>
+    </div>
+
+    <br>
+ 
+    <div class="" ng-controller="turnosController">
+    <button type="button" class="btn btn-primary" ng-click="showform()" >
+            Agregar
+          </button>
+
+          <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaturno', 'tabla unidades')" value="Exportar a excel">
+
+     </div>
+
+
+    <div ng-controller="turnosController" class="modal-body sabuesoContainer" ng-init="listarTurnos()" >
+
+            <!--::::Input de Busqueda-->
+            <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+               <input type="text" placeholder="Buscar Estado unidad" aria-describedby="basic-addon1" ng-model="FiltroTurnos" class="form-control"/>
+               </div>
+           
+           <div class="sabuesoTable50">
+               <table class="table table-striped" id="tablaturno">
+                  <thead>
+                     <tr>
+                        <th>Turno</th>
+                        <th>Hora inicio</th>
+                        <th>Hora fin</th>
+                        <th>Descripcion</th>
+                        <th>Activo</th>
+                     </tr>
+                  </thead>
+                     <tbody> 
+                        <tr ng-repeat="turnos in listaTurnos() | filter:FiltroTurnos">
+                        <th>{{ turnos.Turno }}</th>
+                        <th>{{ turnos.HoraInicio }}</th>
+                        <th>{{ turnos.HoraFin }}</th>
+                        <th>{{ turnos.Descripcion }}</th>
+                        <th>{{ turnos.Activo }}</th>
+                        <th>
+                           <botton  ng-really-message="¿Desea modificar este estado unidad?" ng-really-click="modificarTurnos(turnos)"  class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                       </th>
+           
+                        <th>
+                           <botton   ng-really-message="¿Desea actualizar este turno a inactivo" ng-really-click="eliminarTurnos(turnos, turnos.PK_Turno)"   class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                        </th>
+                       
+           
+                        </tr>
+                     </tbody>
+                  </table>
+            </div>
+           
+           
+            
+           </div>
+
+    

@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-6">
+        <caption><h4 style="text-align:center;font-size:26px">Unidades Detenidas</h4></caption>
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" placeholder="Buscar Unidad Detenida" aria-describedby="basic-addon1" ng-model="FiltroDetenido" class="form-control"/>
+        </div>
+
+        <div style="overflow-y: auto; height:61vh; max-height:61vh; margin-bottom:10px; font-size: 90%;text-align:center">
+            <div class="table-responsive">
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th style="text-align:center;">Vehiculo</th>
+                        <th style="text-align:center;">Ubicacion</th>
+                        <th style="text-align:center;">Tiempo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="carro in vehiculosDetenidos | filter:FiltroDetenido" ng-class="carro.Minutos>60?'label-warning font-bold':''">
+                        <td>{{ carro.Vehiculo }}</td>
+                        <td><a ng-href="{{carro.link}}" target='_blank'>{{carro.Ubicacion}}</a></td>
+                        <td>{{ carro.Tiempo }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4>Detenidos mas de 1 Hora:<strong style="font-size:28px">{{countDetenidos.length}}</strong></h4>
+    </div>
+
+
+    <div id="UnidadesLimiteVelocidad" class="col-md-6">
+        <caption><h4 style="text-align:center;font-size:26px">Unidades Excedieron Limite Velocidad "En Geocerca"</h4></caption>
+
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" placeholder="Buscar Unidad Con Exceso" aria-describedby="basic-addon1" ng-model="FiltroExcedido" class="form-control"/>
+        </div>
+
+        <div style="overflow-y: auto; height:61vh; max-height:61vh; margin-bottom:10px; font-size: 90%;text-align:center">
+            <div class="table-responsive">
+                <table class="table" id="datatable">
+                    <thead>
+                    <tr>
+                        <th style="text-align:center;">Vehiculo</th>
+                        <th style="text-align:center;">Cantidad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="carro in vehiculosExcedidos | filter:FiltroExcedido" ng-class="carro.Cantidad>5?'label-danger font-bold':''">
+                        <td>{{ carro.Vehiculo }}</td>
+                        <td>{{ carro.Cantidad }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4>Total que excedieron mas de 6 veces:<strong style="font-size:28px">{{countTotalExcesos.length}}</strong></h4>
+    </div>
+</div>

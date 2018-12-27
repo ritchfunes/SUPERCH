@@ -1,0 +1,54 @@
+<div class="modal-header" >
+    <h3 class="modal-title">Listado de Ubicaciones</h3>
+
+</div>
+<br>
+<div ng-controller="UbicacionController">
+    <button type="button" class="btn btn-primary" ng-click="showform()">
+        Agregar
+    </button>
+
+    <input type="button" class="btn btn-info" onclick="tableToExcel('tablaubicacion', 'tabla ubicacion')" 
+     value="Exportar a Excel">
+
+     <div class="modal-body sabuesoContainer" ng-init="listarUbicacion()">
+                   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" placeholder="Buscar ubicacion" aria-describedby="basic-addon1" ng-model="FiltroUbicacion" class="form-control"/>
+                   </div>
+
+                   <div class="sabuesoTable50">
+                     <table class="table table-striped" id="tablaubicacion">
+                         <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Descripcion</th>
+                                <th>Taller</th>
+                                <th>Activo</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="ubi in listaUbicacion() | filter:FiltroUbicacion ">
+                                 <th>{{ubi.Codigo}}</th>
+                                 <th>{{ubi.Descripcion}}</th>
+                                 <th>{{ubi.NombreCorto}}</th>
+                                 <th>{{ubi.ACTIVO }}</th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea modificar el taller?" ng-really-click="modificarUbicacion(ubi)"  class="btn btn-success" >
+                                        <span class="glyphicon glyphicon-pencil"></span></button>
+                                 </th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea Inactivar el taller?" ng-really-click="eliminarUbicacion(ubi , ubi.PKUbicacion)" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                 </th>
+                             </tr>
+
+                         </tbody>
+
+                     </table>
+                   </div>
+         </div>
+
+     </div>
+
+</div>

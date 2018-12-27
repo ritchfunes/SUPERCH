@@ -1,0 +1,62 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Estados de unidades</h3>
+</div>
+
+<br>
+
+<div class="" ng-controller="estadosunidadeController">
+
+        <button type="button" class="btn btn-primary"   ng-click="showform()" >
+                Agregar
+              </button>
+
+              <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaestadounidad', 'tabla unidades')" value="Exportar a excel">
+
+
+</div>
+
+<!--:::: FIN Agregar Estados Unidades-->
+
+
+
+<div ng-controller="estadosunidadeController" class="modal-body sabuesoContainer" ng-init="listarEstadosUnidades()" >
+
+ <!--::::Input de Busqueda-->
+ <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+    <input type="text" placeholder="Buscar Estado unidad" aria-describedby="basic-addon1" ng-model="FiltroEstadounidad" class="form-control"/>
+    </div>
+
+<div class="sabuesoTable50">
+    <table class="table table-striped" id="tablaestadounidad">
+       <thead>
+          <tr>
+             <th>Estado</th>
+             <th>Observacion</th>
+             <th>status</th>
+          </tr>
+       </thead>
+          <tbody> 
+             <tr ng-repeat="estadosunidades in listaEstadosUnidades() | filter:FiltroEstadounidad">
+             <th>{{ estadosunidades.Estado }}</th>
+             <th>{{ estadosunidades.Observacion }}</th>
+             <th>{{ estadosunidades.Activo }}</th>
+             <th>
+                <botton  ng-really-message="¿Desea modificar este estado unidad?" ng-really-click="modificarEstadounidad(estadosunidades)"  class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+            </th>
+
+             <th>
+                <botton   ng-really-message="¿Desea actualizar este estado unidad" ng-really-click="eliminarEstadosunidades( estadosunidades, estadosunidades.PK_Estado )"  class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+             </th>
+            
+
+             </tr>
+          </tbody>
+       </table>
+ </div>
+
+
+ 
+</div>
+
+ 

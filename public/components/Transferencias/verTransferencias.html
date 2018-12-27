@@ -1,0 +1,52 @@
+<div ng-init="initListar()">
+    <!--:::::::::::::::::::::::::Modal Listar Transferencias:::::::::::::::::::::::::::::::::::::-->
+    <div class="modal-header">
+        <h3 class="modal-title">Lista de Transferencias Asignadas</h3>
+    </div>
+
+    <div class="modal-body">
+        <!--::::Input de Busqueda-->
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" placeholder="Buscar Transferencia" aria-describedby="basic-addon1" ng-model="FiltroTransferencias" class="form-control"/>
+        </div>
+
+        <div class="sabuesoTable50">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Editar</th>
+                    <th>Rastra</th>
+                    <th>Vehiculo</th>
+                    <th>Conductor</th>
+                    <th>Transferencia</th>
+                    <th>Fecha/Hora</th>
+                    <th>Viaje</th>
+                    <th>Ventada Atencion</th>
+                    <th>Ventada Retorno</th>
+                    <th>Estado Viaje</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="transferencia in listaTransferencias() | filter:FiltroTransferencias">
+                    <th><button title="Modificar" ng-really-message="¿Desea modificar la Transferencia?" ng-really-click="editar(transferencia)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></th>
+                    <th>{{transferencia.Rastra}}</th>
+                    <th>{{transferencia.Vehiculo}}</th>
+                    <th>{{transferencia.Conductor}}</th>
+                    <th>{{transferencia.Transferencia}}</th>
+                    <th>{{transferencia.FechaHora}}</th>
+                    <th>{{transferencia.Viaje}}</th>
+                    <th>{{transferencia.VentanaAtencion}}</th>
+                    <th>{{transferencia.VentanaRetorno}}</th>
+                    <th>{{transferencia.Estado}}</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="col-xs-offset-2">
+            <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Tooltip on left" class="btn btn-danger" ng-click="$dismiss()">Cerrar</button>
+        </div>
+    </div>
+</div>

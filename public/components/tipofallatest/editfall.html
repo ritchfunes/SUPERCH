@@ -1,0 +1,41 @@
+
+
+        <div class="modal-header" >
+                <h3 class="modal-title" id="exampleModalLongTitle">Editar tipo falla</h3>
+               
+              </div>
+      
+              <div class="modal-body" ng-init="init();">
+                
+                      
+          
+                         
+                          <div class="row">
+                              <div class="form-group">
+                                  <label for="" class="control-label">Falla:</label>
+                                  <input type="text" class="form-control" placeholder="Falla" ng-model="falla.Falla"   required/>
+                              </div>
+      
+    
+                              <div class="form-group">
+                                  <label for="" class="control-label">Descripcion:</label>
+                                  <textarea name="" id="" class="form-control" placeholder="Descripcion" ng-model="falla.Descripcion"   required></textarea><br>
+                              </div>
+      
+                          </div>
+                          
+            </div>
+              
+      
+              
+              
+          <div class="modal-footer">
+                  <button title="Editar estado unidad" ng-click="editarfalla()" class="btn btn-primary" >Editar</button>
+              <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+      
+          </div>
+      
+        
+      
+      <!--:::: FIN Agregar Estados Unidades-->
+      

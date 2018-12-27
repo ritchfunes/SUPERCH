@@ -1,0 +1,230 @@
+<form>
+
+<div class="modal-header ">
+    <h3 class="modal-title">Edicion de Filtro</h3>
+</div>
+<div class="modal-body ">
+    <!--ul>
+        <li ng-repeat="item in items">
+            <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+        </li>
+    </ul>
+    Selected: <b>{{ selected.item }}</b-->
+    <div class="col-md-6 " style="height: 70vh;">
+
+        <div class="row">
+            <div class="form-group">
+                <!--label for="" class="control-label">Nombre Filtro</label-->
+                <input type="text" class="form-control" placeholder="Nombre Filtro" ng-model="nombre" required/>
+            </div>
+            <div class="form-group">
+                <!--label for="" class="control-label">Descripcion</label-->
+                <textarea name="" id="" class="form-control" placeholder="Correos Serparado Por Comas" ng-model="correo" required></textarea>
+            </div>
+        </div>
+
+
+
+        <div class="row thumbnail">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="checkbox"  ng-model="velocidad"/>
+                    <label for="" >Velocidad</label>
+                </div>
+
+
+                <dev class="col-md-4" ng-show="velocidad">
+                    <label  class="col-md-3 input-sm">Min</label>
+                    <div class="col-md-9">
+                        <input type="number"  class="form-control input-sm" ng-model="velMin"/>
+                    </div>
+                </dev>
+
+                <dev class="col-md-4" ng-show="velocidad">
+                    <label  class="col-md-3 input-sm">Max</label>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control input-sm"  ng-model="velMax"/>
+                    </div>
+                </dev>
+
+
+            </div>
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="checkbox" ng-model="permanencia" />
+                    <label for="" >Permanencia</label>
+                </div>
+
+                <dev class="col-md-4" ng-show="permanencia">
+                    <label  class="col-md-4 input-sm">Tiempo</label>
+                    <div class="col-md-8">
+                        <input type="number"  class="form-control input-sm" ng-model="tiempo"/>
+                    </div>
+                </dev>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="checkbox" ng-model="entrada" />
+                    <label for="" >Entrada</label>
+                    <br/>
+                    <input type="checkbox" ng-model="salida" />
+                    <label for="" >Salida</label>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="row panel ">
+                        <h6><span>Frecuencia de Envio (En Minutos)</span></h6>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control input-sm" ng-model="frecuencia"/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="row thumbnail">
+            <div class="col-md-3">
+                <input type="checkbox"  ng-model="d1" />
+                <label for="" class="control-label">Lun</label>
+            </div>
+
+            <div class="col-md-3">
+                <input type="checkbox"  ng-model="d2" />
+                <label for="" class="control-label">Mar</label>
+            </div>
+
+            <div class="col-md-3">
+                <input type="checkbox"  ng-model="d3" />
+                <label for="" class="control-label">Mie</label>
+            </div>
+
+            <div class="col-md-3">
+                <input type="checkbox"  ng-model="d4" />
+                <label for="" class="control-label">Jue</label>
+            </div>
+
+            <div class="col-md-3">
+                <input type="checkbox"  ng-model="d5" />
+                <label for="" class="control-label">Vie</label>
+            </div>
+
+
+            <div class="col-md-3">
+                <input type="checkbox"  ng-model="d6" />
+                <label for="" class="control-label">Sab</label>
+            </div>
+
+            <div class="col-md-3">
+                <input type="checkbox"  ng-model="d7" />
+                <label for="" class="control-label">Dom</label>
+            </div>
+
+
+            <br/>
+            <br/>
+
+        </div>
+
+
+
+            <div class="row thumbnail" >
+
+                    <div class="col-md-6">
+                        <label for="" class="control-label">Hora Inicio</label>
+                        <uib-timepicker ng-model="desde" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="" class="control-label">Hora Fin</label>
+                        <uib-timepicker ng-model="hasta" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                    </div>
+
+
+            </div>
+
+
+    </div>
+
+    <div class="col-md-6" >
+
+            <div class="input-group">
+                <span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" placeholder="Buscar Geocercas" aria-describedby="basic-addon1" ng-model="busquesGeocerca" class="form-control"/>
+            </div>
+              <label><input type="checkbox" ng-model="todasGeocercas" ng-click="MarcartodasGeocercas()"> Seleccionar todos</label>
+            <div style="overflow-y: auto; height: 29vh; max-height: 29vh;" ng-init="cargarGeocercas()">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <td>Agre.</td>
+                                <td>Geocerca</td>
+                                <td>Descripcion</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in listaGeocercas | filter:busquesGeocerca">
+                                <td><input type="checkbox" ng-model="row.Marcado"/> </td>
+                                <td ng-bind="row.Nombre"></td>
+                                <td ng-bind="row.Descripcion"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <br/>
+            <div class="input-group">
+                <span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" placeholder="Buscar Unidades" aria-describedby="basic-addon1" ng-model="busquedaUnidades.Vehiculo" class="form-control"/>
+            </div>
+            <label><input type="checkbox" ng-model="todasUnidades" ng-click="MarcartodasUnidades()"> Seleccionar todos</label>
+            <div style="overflow-y: auto; height: 29vh; max-height: 29vh;" ng-init="cargarUnidades()">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td>Agre.</td>
+                            <td>Unidad</td>
+                            <td>Empresa</td>
+                            <td>Conductor</td>
+                        </tr>
+                        </thead>
+                            <tr ng-repeat="row in unidades | filter:busquedaUnidades">
+                                <td><input type="checkbox" ng-model="row.marcado"/> </td>
+                                <td ng-bind="row.Vehiculo"></td>
+                                <td ng-bind="row.Empresa"></td>
+                                <td ng-bind="row.Conductor"></td>
+                            </tr>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+    </div>
+
+</div>
+<div class="modal-footer">
+   <botton ng-really-message="¿Desea actualizar el filtro?" ng-really-click="actualizarFiltro()" class="btn btn-danger">Actualizar filtro</botton>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+
+</form>

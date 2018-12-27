@@ -1,0 +1,42 @@
+<div ng-controller="monitoreoController">
+  <div class="col-md-12" style="text-align:right">
+    <img src="../assets/img/live.gif" alt="" />
+  </div>
+
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a data-target="#home" data-toggle="tab">Unidades Detenidas</a></li>
+    <li><a data-target="#profile" data-toggle="tab">Detalle Excesos</a></li>
+    <!--li><a data-target="#messages" data-toggle="tab">Grafico Geocercas</a></li-->
+    <li><a data-target="#excesos75" data-toggle="tab">Excesos arriba de 75 Km</a></li>
+    <li><a data-target="#unidadesGeo" data-toggle="tab">Unidades En Geocercas</a></li>
+  </ul>
+
+  <div class="tab-content" ng-init="initMonitoreo()">
+
+    <div class="tab-pane active" id="home">
+
+      <div class="col-md-12" ng-include="'./components/monitoreo/unidadesDetenidas.html'"></div>
+
+    </div>
+
+    <div class="tab-pane" id="profile">
+
+      <div id="#seccion1">
+        <div class="col-md-12">
+          <caption><h4 style="text-align:center;">Detalle de Excesos</h4></caption>
+          <jqx-grid id="jqxgrid"  jqx-create="createWidget" jqx-settings="gridSettings" style="margin-left: auto;margin-right: auto;"></jqx-grid>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tab-pane" id="messages">
+      <div class="col-md-12" id="container"></div>
+    </div>
+
+    <div class="tab-pane" id="excesos75" ng-include="'./components/monitoreo/mayores75.html'" ng-init="mayores75()"></div>
+
+    <div class="tab-pane" id="unidadesGeo" ng-include="'./components/monitoreo/unidadesGeocercas.html'"></div>
+
+  </div>
+</div>

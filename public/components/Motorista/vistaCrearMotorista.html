@@ -1,0 +1,76 @@
+<form ng-submit="guardarMotorista()" id="motorista-form" name="motoristaForm">
+    <div class="modal-header">
+        <h3 class="modal-title">Registro de Motorista</h3>
+    </div>
+
+
+
+    <div class="modal-body">
+
+        <div class="col-md-12 sabuesoContainer" >
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="codigo" class="control-label">Codigo Conductor:</label>
+                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Codigo Motorista" 
+                        ng-model="codigo" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="control-label">Nombre de Motorista:</label>
+                        <input type="text" class="form-control" placeholder="Nombre Motorista" ng-model="nombresMotorista" required/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="control-label">Apellido de Motorista:</label>
+                        <input type="text" class="form-control" placeholder="Apellido Motorista" ng-model="apellidosMotorista" required/>
+                    </div>
+                </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="control-label">Numero de Identidad:</label>
+                    <input type="text" class="form-control" placeholder="Identidad" ng-model="Identidad" required/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="control-label">Numero de Telefono:</label>
+                    <input type="tel" class="form-control" placeholder="Telefono" pattern=".{8,8}" ng-model="telefono" required/>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="" class="control-label">Direccion:</label>
+                    <textarea name="" id="" class="form-control" placeholder="Direccion" ng-model="direccion" required></textarea>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="" class="control-label">Expiracion Licencia:</label>
+                    <input type="date" class="form-control" ng-model="expiracionLicencia" required/>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="" class="control-label">Ficha:</label>
+                    <input type="text" placeholder="Ficha" class="form-control" ng-model="ficha" required=""/><br>
+                </div>
+            </div>
+
+
+                </div>
+                
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Guardar</button> 
+        <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancelar</button>
+    </div>
+</form>

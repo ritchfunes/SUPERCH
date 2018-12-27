@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    script.
+      var msj;
+      msj =  !{Message}
+      res = !{err}
+
+      window.onload = function() {
+        if(res ==200) {
+          document.getElementById("mensaje").className = "alert alert-danger";
+        }
+        document.getElementById("mensaje").innerHTML='<span>' + msj + '</span>';
+      }
+
+    style.
+      body{
+        background-image: url('http://recursos.stgands.com/mapa.png');
+        background-size: 100%;
+        width:100%
+      }
+
+    title= title
+    meta(name='viewport' content="width=device-width, initial-scale=1.0")
+    script(src='/assets/js/jquery.min.js')
+
+    link(rel='stylesheet', href='/assets/css/style.css')
+    link( rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap-theme.min.css')
+
+    
+    
+
+
+    // script(src='javascripts/ol-debug.js')
+    //script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js")
+    //body(style="background-image:url(http://www.gpsandsecurity.com/mapa.png);background-size: cover;")
+  body()
+      block content

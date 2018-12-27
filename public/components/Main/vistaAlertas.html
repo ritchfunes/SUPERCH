@@ -1,0 +1,139 @@
+<div class="modal-header">
+  <h3>Alertas</h3>
+</div>
+
+<div class="modal-body sabuesoContainer">
+    <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" placeholder="Buscar Alertas" aria-describedby="basic-addon1" ng-model="FiltroAlerta" class="form-control"/>
+    </div>
+
+    <!--button type="button" class="btn btn-warning"
+            aria-label="Left Align" title="Limpiar"
+            style="float: right;"
+            ng-click="limpiarListaAlertas()">
+
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    </button-->
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#detenciones">
+                Detenidos 30min &nbsp <span class="badge pull-right" ng-bind="detenidos30().length"></span>
+            </a></li>
+            <li><a data-toggle="tab" href="#detenidos">Detenidos &nbsp <span class="badge pull-right" ng-bind="detenidos().length"></span></a></li>
+            <li><a data-toggle="tab" href="#alertas">Alertas &nbsp <span class="badge pull-right" ng-bind="alertas().length"></span></a></li>
+            <li><a data-toggle="tab" href="#sinReportar">Sin Reportar &nbsp <span class="badge pull-right" ng-bind="sinReportar().length"></span></a></li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="detenciones" class="tab-pane fade in active">
+                <br>
+                <label for="">Detenciones Autorizadas mayores a 30 minutos</label>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Vehiculo</td>
+                            <td>Hora</td>
+                            <td>Tiempo</td>
+                            <td>Evento</td>
+                            <td>Comentario</td>
+                        </tr>
+                        <tr ng-repeat="alerta in detenidos30() | filter:FiltroAlerta">
+                            <td>{{alerta.Vehiculo}}</td>
+                            <td>{{utcTimeToLocalTime(alerta.Hora)}}</td>
+                            <td>{{tiempo(alerta.Hora)}}</td>
+                            <td>{{alerta.Evento}}</td>
+                            <td>{{alerta.Comentario}}</td>
+                            <td><button title="Agregar Comentario" ng-click="addComentario(alerta)" class="btn btn-warning"><span class="fa fa-comment"></span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="detenidos" class="tab-pane fade">
+                <br>
+                <label>Detenciones No Autorizadas mayores de 10 minutos</label>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>Vehiculo</td>
+                        <td>Hora</td>
+                        <td>Tiempo</td>
+                        <td>Evento</td>
+                        <td>Comentario</td>
+                    </tr>
+                    <tr ng-repeat="alerta in detenidos() | filter:FiltroAlerta">
+                        <td>{{alerta.Vehiculo}}</td>
+                        <td>{{utcTimeToLocalTime(alerta.Hora)}}</td>
+                        <td>{{tiempo(alerta.Hora)}}</td>
+                        <td>{{alerta.Evento}}</td>
+                        <td>{{alerta.Comentario}}</td>
+                        <td><button title="Agregar Comentario" ng-click="addComentario(alerta)" class="btn btn-warning"><span class="fa fa-comment"></span></button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="alertas" class="tab-pane fade">
+                <br>
+                <label>Alertas</label>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>Vehiculo</td>
+                        <td>Hora</td>
+                        <td>Tiempo</td>
+                        <td>Evento</td>
+                    </tr>
+                    <tr ng-repeat="alerta in alertas() | filter:FiltroAlerta">
+                        <td>{{alerta.Vehiculo}}</td>
+                        <td>{{utcTimeToLocalTime(alerta.Hora)}}</td>
+                        <td>{{tiempo(alerta.Hora)}}</td>
+                        <td>{{alerta.Evento}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="sinReportar" class="tab-pane fade">
+              <br>
+              <label>Unidades sin reportar por mas de 10 min</label>
+              <table class="table table-striped">
+                <tbody>
+                <tr>
+                  <td>Vehiculo</td>
+                  <td>Hora</td>
+                  <td>Tiempo</td>
+                  <td>Evento</td>
+                </tr>
+                <tr ng-repeat="sr in sinReportar() | filter:FiltroAlerta | orderBy: '-FechaHora'">
+                  <td>{{sr.Vehiculo}}</td>
+                  <td>{{utcTimeToLocalTime(sr.FechaHora)}}</td>
+                  <td>{{tiempo(sr.FechaHora)}}</td>
+                  <td>{{sr.Evento}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+<!--
+        <uib-tabset>
+            <uib-tab heading="Detenidos">
+
+            </uib-tab>
+
+            <uib-tab heading="Alertas">
+
+            </uib-tab>
+        </uib-tabset>-->
+    </div>
+
+
+</div>
+
+<div class="modal-footer">
+    <div class="col-xs-9">
+        <label class="control-label pull-left">Total Alertas: <span class="badge" ng-bind="alertas().length + detenidos().length+ sinReportar().length"></span></label>
+    </div>
+    <div class="col-xs-3">
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cerrar</button>
+    </div>
+</div>

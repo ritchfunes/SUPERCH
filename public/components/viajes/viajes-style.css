@@ -1,0 +1,146 @@
+.border-1{
+ padding-top: 5px;
+ border:1px solid ;
+}
+#viajeIda{
+
+    height: 42.5vh;
+    max-height: 42.5vh;
+    overflow-y: auto;
+
+}
+
+.puntero{
+    cursor: pointer;
+}
+
+#viajeRegreso{
+    height: 43vh;
+    max-height: 43vh;
+    overflow-y: auto;
+}
+
+.dark-style{
+    background-color: #4E575B;
+    color: white;
+}
+
+#right-bar{
+    height: 88.5vh;
+    max-height: 88.5vh;
+    padding:2px;
+}
+
+
+.border-bottom{
+
+    border-bottom: 2px solid lightgrey;
+    margin-bottom: 4px;
+}
+
+.circle-content{
+    font-size:11px;
+    font-weight: bold;
+    border:solid 1px;
+    border-radius: 10px;
+    width: 90px !important;
+    margin-left: -15px;
+    height:50px !important;
+    background-color: #31B0D5;
+    margin-top: 5px;
+    padding-top:5px;
+}
+
+.text-white{
+    color: white;
+}
+
+.viaje-bar{
+    /*margin-top:13px;*/
+    margin-bottom: 1px!important;
+}
+
+.dif-ventana{
+    font-size:11px;
+    font-weight: bold;
+    margin-left: -20px;
+    border-radius: 10px;
+    border: 1px solid;
+    width:85px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+.box-danger{
+    background-color: #F2DEDE;
+    border-color:#A94442 ;
+    border-width: 2px;
+}
+
+.box-success{
+    background-color: #DFF0D8;
+    border-color:#41763D ;
+    border-width: 2px;
+}
+
+#tblUniDisp{
+    height: 39vh;
+    max-height: 39vh;
+    min-height: 39vh;
+    overflow-y: auto;
+}
+
+
+/******************Modal******************/
+
+#modalDetalleBody{
+    min-height: 67vh;
+    height: 67vh;
+}
+
+.detViajeBarraDerecha {
+    border-radius: 5px;
+    border: 1px solid black;
+
+    margin-bottom: 10px;
+}
+.detViajeBarraDerecha #tablaEventos{
+    font-size: 11px;
+    overflow-y: auto;
+    height: 40vh;
+    max-height: 40vh;
+}
+#TiemposViaje {
+    font-size: 13px;
+}
+#TiemposViaje tbody tr th{
+    width: 80px!important;
+    text-align: right!important;
+
+}
+
+#TiemposViaje tbody tr td{
+    width: 90px!important;
+    text-align: right;
+}
+#detTablaParadas{
+    min-height: 26vh;
+    height: 26vh;
+    max-height: 26vh;
+    overflow-y: auto;
+}
+.alert{
+    margin-bottom: 0px!important;
+}
+
+hr {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #aaaaaa; -moz-use-text-color: #FFFFFF;
+    border-style: solid none;
+    border-width: 1px 0;
+    margin: 18px 0;
+}

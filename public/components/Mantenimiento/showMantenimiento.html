@@ -1,0 +1,58 @@
+<div class="modal-header" >
+    <h3 class="modal-title">Listado de Mantenimiento</h3>
+
+</div>
+<br>
+<div ng-controller="MantenimientoController">
+    <button type="button" class="btn btn-primary" ng-click="showform()">
+        Agregar
+    </button>
+
+    <input type="button" class="btn btn-info" onclick="tableToExcel('tablamantenimiento', 'tabla mantenimiento')" 
+     value="Exportar a Excel">
+
+     <div class="modal-body sabuesoContainer" ng-init="listarMantenimiento()">
+                   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" placeholder="Buscar mantenimiento" aria-describedby="basic-addon1" ng-model="FiltroMantenimiento" class="form-control"/>
+                   </div>
+
+                   <div class="sabuesoTable50">
+                     <table class="table table-striped" id="tablamantenimiento">
+                         <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Conductor</th>
+                                <th>Falla</th>
+                                <th>Vehiculo</th>
+                                <th>Mecanico</th>
+                                <th>Activo</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="man in listaMantenimiento() | filter:FiltroMantenimiento ">
+                                 <th>CO{{man.PK_Mantenimiento}}</th>
+                                 <th>{{man.CONDUCTORES}}</th>
+                                 <th>{{man.Falla}}</th>
+                                 <th>{{man.Nombre_Vehiculo}}</th>
+                                 <th>{{man.MECANICO }}</th>
+                                 <th>{{man.ACTIVO }}</th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea modificar el mantenimiento?" ng-really-click="modificarMantenimiento(man)"  class="btn btn-success" >
+                                        <span class="glyphicon glyphicon-pencil"></span></button>
+                                 </th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea Inactivar el mantenimiento?" ng-really-click="eliminarMantenimiento(man ,  man.PK_Mantenimiento)" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                 </th>
+                             </tr>
+
+                         </tbody>
+
+                     </table>
+                   </div>
+         </div>
+
+     </div>
+
+</div>

@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="" id="exampleModalCenter"  >
+
+    <div class="modal-header"  ng-init="init()"   >
+      <h3 class="modal-title" id="exampleModalLongTitle"  >Editar unidades</h3>
+     
+    </div>
+
+    <div class="modal-body"     >
+      
+            <div class="col-md-12 sabuesoContainer" >
+
+                
+                <div class="row">
+                  
+
+                  <div class="form-group" >
+                    <label for="" class="control-label">Vehiculo</label>
+                    <select name="" id="" class="form-control" ng-options="und.Vehiculo for und in listaUnidades() track by und.Imei" ng-model="dataUnidades"  required ></select>
+                  </div>
+                        
+                  <div class="form-group">
+                    <label for="" class="control-label"> Modelo</label>
+                    <select name="" id="" class="form-control" ng-options=" mode.Modelo  for mode in listaModelo() track by mode.pk_ModeloVehiculo " ng-model="dataModelo"   required ></select>
+                  </div>
+                          
+                <div class="form-group">
+                    <label for="" class="control-label">Año</label>
+                    <input type="text" class="form-control" placeholder="Año" ng-model="modelound.Year" >
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Estado</label>
+                    <select class="form-control"  ng-options="est.Estado for est in listaEstados() track by est.PK_Estado" ng-model="dataEstadosund" required></select>
+                </div>
+               
+                       
+                </div>
+                
+    
+    </div>
+
+
+
+    
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="editarModelounidad()"   >Guardar</button> 
+    <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+
+</div>
+
+
+</div>
+

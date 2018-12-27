@@ -1,0 +1,128 @@
+<div class="modal-header">
+    <h3 class="modal-title"> Registro de Mantenimiento</h3>
+   </div>
+   
+   <div class="modal-body" ng-init="init()">
+       <div class="col-md-12 sabuesoContainer">
+       <form >
+   
+           <div class="row">
+               <div class="form-group">
+                   <label for="" class="control-label" >Planificado</label>
+                   <select name="" id="" class="form-control" required 
+                   ng-options=" plan.estadoplan for plan in planificar  track by plan.id "
+                   ng-model="planificaman" required
+                 ></select>
+                </div>
+              
+   
+               <div class="form-group">
+                       <label for="" class="control-label">Fecha Planificacion</label>
+                       <input type="date" placeholder="Fecha Planificacion" class="form-control" ng-model="fechplaman" >
+                   </div>
+   
+                   <div class="form-group">
+                    <label for="" class="control-label">Carburante</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" car.estadocarburante for car in carburante track by car.id"
+                    ng-model="carburanteman" required
+                  ></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Tipo Manteniminento</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" tip.estadotipoman for tip in tipomantenimiento track by tip.estadotipoman"
+                    ng-model="tipomanman" required
+                  ></select>
+               
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Tipo Falla</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" tip.Falla for tip in listaTipoFalla() track by tip.Pk_tipofalla"
+                    ng-model="tipoman" required
+                  ></select>
+                </div>
+   
+                <div class="form-group">
+                    <label for="" class="control-label">Modelo Unidad</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" und.Nombre_Vehiculo for und in listaModeloUnidades() track by und.PK_ModeloUnidades"
+                    ng-model="modundman" required
+                  ></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Kilometraje</label>
+                    <input type="text" placeholder="Kilometraje" class="form-control"  ng-model="kilometrajeman" >
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Categoria</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" cat.estadocabezal for cat in categoria track by cat.estadocabezal"
+                    ng-model="categoriaman" required
+                  ></select>
+               
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Motivo</label>
+                    <textarea name="" id="" class="form-control" placeholder="Motivo" ng-model="Motivomant"  ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Fecha Ingreso</label>
+                    <input type="date" placeholder="Nombre Largo" class="form-control"  ng-model="fecingresoman" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Fecha Entrega</label>
+                    <input type="date" placeholder="Nombre Largo" class="form-control" ng-model="fecentregaman"  required>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Conductores</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" con.Nombre + ' '+ con.Apellido  for con in listaMotoristas() track by con.IdConductor "
+                    ng-model="conductorman" required
+                  ></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Observaciones</label>
+                    <textarea name="" id="" class="form-control" placeholder="Observaciones" ng-model="observacoinesman"  ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Mecanico</label>
+                    <select name="" id="" class="form-control" required 
+                    ng-options=" mecani.Nombre + ' '+ mecani.Apellido for mecani in listaMecanico() track by mecani.PKMecanico"
+                    ng-model="mecanicoman" required
+                  ></select>
+                 </div>
+
+
+                 
+                     
+           </div>
+   
+         
+   
+          
+       </form>
+   
+       </div>
+
+
+
+   </div>
+
+   <div class="modal-footer">
+        <div class="form-group">
+        <button class="btn btn-primary" type="button" ng-click="guardarMantenimiento()" >Guardar</button>
+        <button data-dismiss="modal" data-toggle="tooltip" data-placement="right" title="cancelar" class="btn btn-danger" ng-click="$dismiss()" >Cancelar</button>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+
+
+
+
+<!-- Modal -->
+<div class="" id="exampleModalCenter">
+
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLongTitle">Registro turnos</h3>
+         
+        </div>
+
+        <div class="modal-body">
+          
+                <div class="col-md-12 sabuesoContainer" >
+    
+                    <form >
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="" class="control-label">Turnos:</label>
+                            <input type="text" class="form-control" placeholder="Turnos" ng-model="TurnoTurnos"    required/>
+                        </div>
+
+                        <div class="form-group">
+                                <label for="" class="control-label">Hora Inicio:</label>
+                                <input type="time" class="form-control" placeholder="Hora inicio" ng-model="HoraInicioTurnos"   required/>
+                            </div>
+                            <div class="form-group">
+                                    <label for="" class="control-label">Hora Fin:</label>                       
+                                    <input type="time" class="form-control" placeholder="Hora fin" ng-model="HoraFinTurnos"   required/>
+                                </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Descripcion:</label>
+                            <textarea name="" id="" class="form-control" placeholder="Descripcion" ng-model="DescripcionTurnos"  required></textarea><br>
+                            <button class="btn btn-primary" type="button" ng-click="guardarTurnos()"    >Guardar</button>
+                            <button data-dismiss="modal" data-toggle="tooltip" data-placement="left" title="Cancelar" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
+
+                        </div>
+
+                    </div>
+                    </form>
+        
+        </div>
+
+        
+        <div class="modal-footer">
+       </div>
+
+  </div>
+
+<!--:::: FIN Agregar Estados Unidades-->
+

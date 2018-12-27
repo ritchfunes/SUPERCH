@@ -1,0 +1,47 @@
+<div class="modal-header" ng-init="init()">
+    <h3 class="modal-title text-center">Detalle de Unidades en Geocerca: {{nombreGeocerca}}</h3>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <div style="margin-bottom:10px;" class="input-group">
+                <span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" placeholder="Buscar Vehiculo" aria-describedby="basic-addon1" ng-model="FiltroUnidad" class="form-control"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive" id="detalleUnidades">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Rastra</th>
+                        <th>Vehiculo</th>
+                        <th>Fecha de Entrada</th>
+                        <th>Tiempo en Geocerca</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="vehiculo in detalles | filter: FiltroUnidad">
+                        <td>{{ vehiculo.Rastra }}</td>
+                        <td>{{ vehiculo.Nombre_Vehiculo }}</td>
+                        <td>{{ vehiculo.FechaEntrada }}</td>
+                        <td>{{ vehiculo.TiempoEnGeocerca }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <div class="col-xs-6"><span class="pull-left">Total Vehiculos en Geocerca: <span class="badge" ng-bind="cantidad"></span></span></div>
+    <div class="col-xs-6">
+        <button type="button" class="btn btn-primary" ng-click="exports()">Exportar</button>
+        <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cerrar</button>
+    </div>
+</div>

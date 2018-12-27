@@ -1,0 +1,12 @@
+#velocimetro{
+    position: absolute;
+    top:45px;
+    left:45px;
+
+}
+
+#jqxGauge
+{
+    width: 180px !important;
+    height: 180px !important;
+}

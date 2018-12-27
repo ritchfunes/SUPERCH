@@ -1,0 +1,35 @@
+<div class="container" ng-controller="ControlRoomController">
+    <div class="row">
+
+        <div class="col-md-12" ng-init="init();">
+
+            <div class="col-sm-12 text-center" style="margin-top: 15px">
+                <h4>Reportes de Transferencias Terminadas</h4>
+            </div>
+        
+        </div>
+
+        <!--Loading-->
+        <div class="col-md-12" style="text-align: center; padding-top: 3cm;" ng-show="loading">
+            <i class="fa fa-refresh fa-spin fa-fw" style="font-size: 15em;" aria-hidden="true"></i>
+        </div>
+        <!--End loading-->
+
+    </div>
+    
+    <div class="row">
+        
+        <div class="col-md-12" ng-show="loading==false">
+            <jqx-grid id="jqxgrid"  jqx-create="createWidget" jqx-settings="gridSettings"></jqx-grid>
+        </div>
+        <br/>
+        <div class="col-md-12" ng-show="createWidget">
+            <p></p>
+            <input ng-show="loading==false" class="btn btn-primary" type="button" value="Export to Excel" ng-click="excelExport()" />
+            <input ng-show="loading==false" class="btn btn-primary" type="button" value="Export to HTML" ng-click="htmlExport()" />
+            <input ng-show="loading==false" class="btn btn-primary" type="button" value="Export to PDF" ng-click="pdfExport()" />
+        </div>
+
+    </div>
+
+</div>

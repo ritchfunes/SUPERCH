@@ -1,0 +1,58 @@
+<div class="modal-header" >
+    <h3 class="modal-title">Listado de Mecanicos</h3>
+
+</div>
+<br>
+<div ng-controller="MecanicoController">
+    <button type="button" class="btn btn-primary" ng-click="showform()">
+        Agregar
+    </button>
+
+    <input type="button" class="btn btn-info" onclick="tableToExcel('tablamecanicos', 'tabla mecanicos')" 
+     value="Exportar a Excel">
+
+     <div class="modal-body sabuesoContainer" ng-init="listarMecanico()">
+                   <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" placeholder="Buscar mecanico" aria-describedby="basic-addon1" ng-model="FiltroMecanico" class="form-control"/>
+                   </div>
+
+                   <div class="sabuesoTable50">
+                     <table class="table table-striped" id="tablamecanicos">
+                         <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Telefono</th>
+                                <th>Identidad</th>
+                                <th>Estado</th>
+                                <th>Activo</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="mec in listaMecanico() | filter:FiltroMecanico ">
+                                 <th>{{mec.Nombre}}</th>
+                                 <th>{{mec.Apellido}}</th>
+                                 <th>{{mec.Telefono}}</th>
+                                 <th>{{mec.Identidad}}</th>
+                                 <th>{{mec.Estado }}</th>
+                                 <th>{{mec.Activo }}</th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea modificar el mecanico?" ng-really-click="modificarMecanico(mec)"  class="btn btn-success" >
+                                        <span class="glyphicon glyphicon-pencil"></span></button>
+                                 </th>
+                                 <th>
+                                    <button ng-really-message="¿ Desea Inactivar el mecanico?" ng-really-click="eliminarMecanico(mec , mec.PKMecanico)" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                 </th>
+                             </tr>
+
+                         </tbody>
+
+                     </table>
+                   </div>
+         </div>
+
+     </div>
+
+</div>

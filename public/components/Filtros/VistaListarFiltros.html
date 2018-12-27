@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Filtros</h3>
+</div>
+
+<div  class="modal-body sabuesoContainer" ng-init="listarFiltros()">
+
+   <!--::::Input de Busqueda-->
+   <div style="margin-bottom:10px;" class="input-group">
+        <span id="basic-addon1" class="input-group-addon">
+            <i class="fa fa-search"></i>
+        </span>
+        <input type="text" placeholder="Buscar Filtro" ng-model="search.$" aria-describedby="basic-addon1" class="form-control"/>
+   </div>
+
+      <div class="sabuesoTable50" >
+         <table class="table table-striped">
+               <thead>
+                     <tr>
+                         <th>Nombre de Filtro</th>
+                         <th>Opciones</th>
+                     </tr>
+               </thead>
+               <tbody>
+                     <tr ng-repeat="filtro in listaFiltros() | toArray:false | filter:search">
+                         <td>{{ filtro[0].Nombre }}</td>
+                         <td class="col-md-3">
+                            <center>
+                                <botton ng-really-message="¿Desea eliminar este Filtro?" ng-really-click="eliminarFiltro(filtro,filtro[0].FiltroId)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></botton>
+                                <botton class="btn btn-primary" ng-click="editarFiltro(filtro)"><span class="glyphicon glyphicon-eye-open"></span></botton>
+                            </center>
+                         </td>
+                     </tr>
+               </tbody>
+         </table>
+      </div>
+</div>
+<div class="modal-footer">
+   <!--<div id="notificacion"></div>-->
+   <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cerrar</button>
+</div>

@@ -1,0 +1,70 @@
+<style type="text/css">
+    .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    }
+
+    /* Specify styling for tooltip contents */
+        .tooltip.customClass .tooltip-inner {
+          color: #880000;
+          background-color: #ffff66;
+          box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        }
+        /* Hide arrow */
+        .tooltip.customClass .tooltip-arrow {
+          display: none;
+        }
+</style>
+
+<div class="modal-header" ng-init="init()">
+    <h3 class="modal-title">Registro de lugar autorizado</h3>
+</div>
+
+<div class="modal-body">
+
+
+  <div class="row">
+    <div class="col-md-6" style="padding-left:40px;">
+        <button type="submit" class="btn btn-primary btn-circle col-md-2" ng-click="add()">+</button>
+    </div>
+  </div>
+
+	<div class="col-md-12" style="overflow-y: auto; height: 62vh;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          Referencias
+        </div>
+        <div class="col-md-6">
+          Radio
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="row in ref track by $index">
+        <div class="col-md-6">
+          <select class="form-control" ng-model="row.referencias">
+            <option ng-repeat="ref in referencias" value="{{ref.PK_ReferenciaId}}">{{ref.Nombre}}</option>
+          </select>
+        </div>
+
+
+        <div class="col-md-4">
+          <input class="form-control" type="number" ng-model="row.radio">
+        </div>
+
+        <button class="btn btn-danger btn-circle col-md-2" ng-click="eliminarCampo($index)">-</button>
+        <br /><br /><br />
+      </div>
+</div>
+
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="guardar()">Guardar</button>
+  <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancelar</button>
+</div>

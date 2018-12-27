@@ -1,0 +1,82 @@
+//
+   Created by Roberto on 17/03/2016.
+
+doctype html
+html(ng-app="SabuesoInvitado")
+   head
+       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+       //:::::::::::::::::::::Awesome font::::::::::::::::::::::
+       link(rel="stylesheet" href="assets/font-awesome-4.6.3/css/font-awesome.min.css")
+
+       //::::::::::::::::::::::::Bower::::::::::::::::::::::::
+       link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.css', media='screen', title='no title', charset='utf-8')
+       link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css')
+       link(rel='stylesheet', href='bower_components/leaflet/dist/leaflet.draw.css')
+       link(rel='stylesheet', href='bower_components/Leaflet.label/dist/leaflet.label.css')
+       script(src='bower_components/jquery/dist/jquery.min.js')
+       script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js')
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+       script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
+       script(src='bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js')
+
+       script(src='http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js')
+       script(src='http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js')
+       script(src='bower_components/angular-leaflet-directive/dist/leaflet.polylineDecorator.js')
+       script(src='bower_components/leaflet/dist/leaflet.draw.js')
+       script(src='bower_components/Leaflet.label/dist/leaflet.label.js')
+       //script(src='http://maps.google.com/maps/api/js?v=3&sensor=false')
+       script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBarylJ8I7CBJFxvwiVEIm9hKCDV5c_QhQ')
+       script(src='bower_components/angular-leaflet-directive/dist/google.js')
+       script(src='bower_components/angular-leaflet-directive/dist/Bing.js')
+       script(src="assets/js/moment/moment.min.js")
+       script(src="assets/js/moment/angular-moment.min.js")
+       script(src="assets/libs/ui-bootstrap-tpls-0.14.3.min.js")
+       script(src="app.js")
+       script(src='components/invitado/Factory.js')
+       script(src='components/invitado/InvitadoController.js')
+
+
+       link(rel='stylesheet', href='bower_components/jqwidget/styles/jqx.base.css')
+       link(rel='stylesheet', href='components/invitado/assets/styles.css')
+       script(src='bower_components/jqwidgets/jqxcore.js')
+       script(src='bower_components/jqwidgets/jqxdata.js')
+       script(src='bower_components/jqwidgets/jqxbuttons.js')
+       script(src='bower_components/jqwidgets/jqxslider.js')
+       script(src='bower_components/jqwidgets/jqxdraw.js')
+       script(src='bower_components/jqwidgets/jqxgauge.js')
+       script(src='bower_components/jqwidgets/jqxgauge.js')
+       script(src='bower_components/jqwidgets/jqxangular.js')
+
+
+       script.
+          _token = !{token};
+          //alert(_token);
+
+   body(ng-controller="invitadoCtrl" ng-init="init()")
+      h6
+      //Rastreo de invitado
+      div.container-fluid
+        leaflet(lf-center='center', markers='markers', paths='Paths', layers='layers', height='85vh', width='100%')
+        div.hidden-xs(id="velocimetro")
+            jqx-gauge(id="jqxGauge" ng-model='unidad.Velocidad', jqx-settings='gaugeSettings', style='position: absolute; top: 0px; left: 0px; ',width=100)
+
+
+        div.row
+              div.col-md-12.col-sm-12
+                    label.control-label
+                        label.control-label
+                            h3 Ubicacion: &nbsp
+                                strong(ng-bind="ubicacion")
+                        | &nbsp&nbsp&nbsp&nbsp
+                        label.control-label
+                            h3 Velocidad: &nbsp
+                                strong(ng-bind="unidad.Velocidad + ' Km/h'")
+                        | &nbsp&nbsp&nbsp&nbsp
+                        h3 Actualizara en: &nbsp
+                            strong(ng-bind="contIntervalo")
+
+
+
+
+

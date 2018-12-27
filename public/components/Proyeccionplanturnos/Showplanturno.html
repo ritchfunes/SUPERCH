@@ -1,0 +1,70 @@
+
+
+<div class="modal-header">
+        <h3 class="modal-title">Listado de proyeccion de planes por turno</h3>
+    </div>
+
+    <br>
+ 
+    <div class="" ng-controller="ProyeccionPlanTurnosCtrl"   >
+    <button type="button" class="btn btn-primary" ng-click="showform()"    >
+            Agregar
+          </button>
+
+          <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaplanturno', 'tabla unidades')" value="Exportar a excel">
+
+     </div>
+
+
+    <div ng-controller="ProyeccionPlanTurnosCtrl" class="modal-body sabuesoContainer" ng-init="listarProyeccionPlanTurnos()" >
+
+            <!--::::Input de Busqueda-->
+            <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+               <input type="text" placeholder="Buscar plan turno" aria-describedby="basic-addon1" ng-model="FiltroPlanturno" class="form-control"/>
+            </div>
+           
+    <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="date"  placeholder="Buscar fecha"   aria-describedby="basic-addon1" ng-model="Filtrofecha"  ng-change="cambiofecha()" class="form-control"/>
+    </div>
+
+           <div class="sabuesoTable50">
+               <table class="table table-striped" id="tablaplanturno">
+                  <thead>
+                     <tr>
+                        <th>Descripcion</th>
+                        <th>Real</th>
+                        <th>Fecha</th>
+                        <th>Real</th>
+                        <th>Proyeccion</th>
+                        <th>Meta</th>
+                        <th>Activo</th>                       
+                     </tr>
+                  </thead>
+                     <tbody> 
+                        <tr ng-repeat="planturnos in listaProyeccionPlanTurnos() | filter:FiltroPlanturno | filter:Filtrofecha ">
+                        <th> {{ planturnos.Descripcion }}</th>
+                        <th> {{ planturnos.Cantidad }}</th>
+                        <th> {{ planturnos.Fecha   }}</th>
+                        <th> {{ planturnos.Real }}</th>
+                        <th> {{ planturnos.Cumplimiento }}</th>
+                        <th> {{ planturnos.meta }}</th>
+                        <th> {{ planturnos.Activo }}</th>
+                        <th>
+                           <botton  ng-really-message="¿Desea modificar esta proyeccion?" ng-really-click="modificarPlanTurnos(planturnos)"   class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                       </th>
+           
+                        <th>
+                           <botton   ng-really-message="¿Desea actualizar esta proyeccion a inactivo" ng-really-click="eliminarPlanturnos(planturnos, planturnos.PK_PlanTurnos)"    class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                        </th>
+                       
+           
+                        </tr>
+                     </tbody>
+                  </table>
+            </div>
+           
+           
+            
+           </div>
+
+    

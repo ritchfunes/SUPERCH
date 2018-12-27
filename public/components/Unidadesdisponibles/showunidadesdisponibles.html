@@ -1,0 +1,76 @@
+
+<div class="modal-header" >
+        <h3 class="modal-title">Listado de unidades disponibles al taller</h3>
+    </div>
+
+   
+    <br>
+ 
+    <div class="" ng-controller="unidadesdisponiblesCtrl"    >
+    <button type="button" class="btn btn-primary"  ng-click="showform()"    >
+            Agregar
+          </button>
+
+
+          <input type="button" class="btn btn-info"  onclick="tableToExcel('tablaunidadesdispo', 'tabla unidades')" value="Exportar a excel">
+
+        <!--
+          <button type="button" class="btn btn-primary" ng-click="guardarunidadesdisponibles()" >
+            Sincronizar
+          </button>
+ -->
+        
+     </div>
+
+
+    <div ng-controller="unidadesdisponiblesCtrl" class="modal-body sabuesoContainer" ng-init="listarUnidadesdisponibles()" >
+
+            <!--::::Input de Busqueda-->
+            <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+               <input type="text" placeholder="Buscar unidades disponibles" aria-describedby="basic-addon1" ng-model="Filtrounidadesdisponibles" class="form-control"/>
+               </div>
+
+              
+     <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="date"  placeholder="Buscar fecha"   aria-describedby="basic-addon1" ng-model="Filtrofecha"  ng-change="cambiofecha()" class="form-control"/>
+    </div> 
+           
+           <div class="sabuesoTable50">
+               <table class="table table-striped" id="tablaunidadesdispo">
+                  <thead>
+                     <tr>
+                        <th>Vehiculo</th>
+                        <th>Rastra</th>
+                  <!--      <th>Fecha asignacion</th>
+                        <th>Fecha entrega</th>
+                   -->     <th>Estado</th>
+                   <!--     <th>Activo</th>
+                 -->     </tr>
+                  </thead>
+                     <tbody> 
+                        <tr ng-repeat="unidadesdisponibles in listaUnidadesdisponibles() | filter:Filtrounidadesdisponibles | filter:Filtrofecha ">
+                        <th> {{ unidadesdisponibles.Nombre_Vehiculo }} </th>
+                        <th> {{ unidadesdisponibles.Rastra  }}</th>               
+                     <!--   <th> {{ unidadesdisponibles.FechaAsignacion  }}</th>
+                        <th> {{ unidadesdisponibles.FechaEntrega }}</th>
+                     -->    <th>  {{ unidadesdisponibles.Estado }} </th>
+                    <!--    <th> {{ unidadesdisponibles.Activo }}</th>
+                     -->    <th>
+                           <botton  ng-really-message="¿Desea modificar  unidad disponible?" ng-really-click="modificarUnidadesdisponibles(unidadesdisponibles)"    class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                       </th>
+           
+                        <th>
+                           <botton   ng-really-message="¿Desea actualizar esta unidad disponible a inactivo" ng-really-click="eliminarUnidadesdisponible(unidadesdisponibles, unidadesdisponibles.PK_UnidadesDisponibles)"   class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                        </th>
+                       
+           
+                        </tr>
+                     </tbody>
+                  </table>
+            </div>
+           
+           
+            
+           </div>
+
+    

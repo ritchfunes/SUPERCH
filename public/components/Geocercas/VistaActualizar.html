@@ -1,0 +1,16 @@
+<div ng-controller="ControllerGeocercas">
+    <form >
+        <input type="text" name="nombre" id="nombreupdt" placeholder="Nombre Geocerca" style="margin-top:10px;" class="form-control"/>
+        <input type="text" name="id" id="idudpt" aria-hidden="true" placeholder="id" style="margin-top:10px;" class="form-control"/>
+        <textarea style="margin-top:10px;" id="descripcionupdt" name="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+        <input type="color" id="colorupdt" name="color" placeholder="Color" style="margin-top:10px;" class="form-control"/>
+        <input type="text" style="margin-top:10px;" id="puntosupdt" name="posiciones" placeholder="Posicion" class="form-control"/>
+        <select name="estado" style="margin-top:10px;" class="form-control">
+            <option value="">ESTADO</option>
+            <option value="VISIBLE">VISIBLE</option>
+            <option value="NOVISIBLE">NO VISIBLE</option>
+        </select><br/>
+        <input type="submit" value="Actualizar" style="margin-right:10px;" class="btn btn-primary"/>
+        <button type="submit" data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+    </form>
+</div>

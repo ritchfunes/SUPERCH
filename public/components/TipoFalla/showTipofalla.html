@@ -1,0 +1,59 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Tipo fallas</h3>
+</div>
+
+<br>
+<div ng-controller="tipofallaController" >
+<div class="" >
+<button type="button" class="btn btn-primary"  ng-click="showform()"  >
+        Agregar
+      </button>
+
+      <input type="button" class="btn btn-info"  onclick="tableToExcel('tablatipofalla', 'tabla tipofalla')" value="Exportar a excel">
+
+ </div>
+
+
+<div  class="modal-body sabuesoContainer" ng-init="listarTipoFalla()" >
+
+        <!--::::Input de Busqueda-->
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+           <input type="text" placeholder="Buscar tipo falla" aria-describedby="basic-addon1" ng-model="FiltroTipofalla" class="form-control"/>
+           </div>
+       
+       <div class="sabuesoTable50">
+           <table class="table table-striped" id="tablatipofalla">
+              <thead>
+                 <tr>
+                    <th>Falla</th>
+                    <th>Descripcion</th>
+                    <th>Activo</th>
+                 </tr>
+              </thead>
+                 <tbody> 
+                    <tr ng-repeat="tipofalla in listaTipoFalla() | filter:FiltroTipofalla">
+                    <th>{{ tipofalla.Falla }}</th>
+                    <th>{{ tipofalla.Descripcion }}</th>
+                    <th>{{ tipofalla.ACTIVO }}</th>
+                    <th>
+                       <botton  ng-really-message="¿Desea modificar este tipo falla?" ng-really-click="modificarTipofalla(tipofalla)"    class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                   </th>
+       
+                    <th>
+                       <botton   ng-really-message="¿Desea actualizar este tipo de falla a inactivo" ng-really-click="eliminarTipofallas(tipofalla, tipofalla.Pk_tipofalla)"    class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                    </th>
+                   
+       
+                    </tr>
+                 </tbody>
+              </table>
+        </div>
+       
+       
+        
+       </div>
+
+    </div>
+
+

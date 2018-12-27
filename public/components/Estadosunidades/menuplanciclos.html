@@ -1,0 +1,118 @@
+
+<div class="row" >
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+        <h1 class="text-center">Lista de Plan ciclos</h1>
+    </div>
+    <div class="col-xs-2"></div>
+</div>
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Unidades disponibles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="unidadlinea-tab" data-toggle="tab" href="#unidadlinea" role="tab" aria-controls="contact" aria-selected="false">Unidades disponibles en linea</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="conductores-tab" data-toggle="tab" href="#conductores" role="tab" aria-controls="profile" aria-selected="false">Conductores</a>
+      </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Plan unidades</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Plan Turnos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="turno-tab" data-toggle="tab" href="#turno" role="tab" aria-controls="contact" aria-selected="false">Turno</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="estadosunidades-tab" data-toggle="tab" href="#estadosunidades" role="tab" aria-controls="contact" aria-selected="false">Estados unidad </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="proyeccionplan-tab" data-toggle="tab" href="#proyeccionplan" role="tab" aria-controls="contact" aria-selected="false">Proyeccion plan</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="unddisposemanal-tab" data-toggle="tab" href="#unddisposemanal" role="tab" aria-controls="contact" aria-selected="false">Estado unidades semanal</a>
+      </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <div  ng-include src="'components/Unidadesdisponibles/showunidadesdisponibles.html'"  >
+
+        </div>
+        
+
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+ 
+
+        <div  ng-include src="'components/proyeccionplanunidades/showproyeccionplanunidades.html'"  >
+
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+        <div  ng-include src="'components/Proyeccionplanturnos/Showplanturno.html'"  >
+
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="turno" role="tabpanel" aria-labelledby="turno-tab">
+
+        <div  ng-include src="'components/Turnos/ShowTurnos.html'" id="turno" >
+
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="estadosunidades" role="tabpanel" aria-labelledby="estadosunidades-tab">
+
+        <div  ng-include src="'components/Estadosunidades/VistaShowEstadosUnidades.html'"  >
+
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="proyeccionplan" role="tabpanel" aria-labelledby="proyeccionplan-tab">
+
+        <div  ng-include src="'components/ProyeccionPlan/showProyeccionPlan.html'"  >
+
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="unddisposemanal" role="tabpanel" aria-labelledby="unddisposemanal-tab">
+
+        <div  ng-include src="'components/Unidadesdisponibles/showUnidaddisposemanal.html'"  >
+
+        </div>
+
+    </div>
+
+
+    <div class="tab-pane fade" id="unidadlinea" role="tabpanel" aria-labelledby="unidadlinea-tab">
+
+        <div  ng-include src="'components/Unidadesdisponibles/ShowUnddispoOnline.html'"  >
+
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="conductores" role="tabpanel" aria-labelledby="conductores-tab">
+
+        <div  ng-include src="'components/Motorista/vistaListarMotoristas.html'"  >
+
+        </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+  
+

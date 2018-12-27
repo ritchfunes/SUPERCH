@@ -1,0 +1,61 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Listado de Modelo de vehiculos</h3>
+</div>
+
+<br>
+<div ng-controller="modelovehiculoController"  >
+<div class="" >
+<button type="button" class="btn btn-primary" ng-click="showform()"   >
+        Agregar
+      </button>
+
+      <input type="button" class="btn btn-info"  onclick="tableToExcel('tablamodelovehiculo', 'tabla modelovehiculo')" value="Exportar a excel">
+
+ </div>
+
+
+<div  class="modal-body sabuesoContainer" ng-init="listarModeloVehiculo()" >
+
+        <!--::::Input de Busqueda-->
+        <div style="margin-bottom:10px;" class="input-group"><span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+           <input type="text" placeholder="Buscar Modelo" aria-describedby="basic-addon1" ng-model="FiltroModelovehiculo" class="form-control"/>
+           </div>
+       
+       <div class="sabuesoTable50">
+           <table class="table table-striped" id="tablamodelovehiculo">
+              <thead>
+                 <tr>
+                    <th>Modelo</th>
+                    <th>Marca</th>
+                    <th>Tipo Vehiculo</th>
+                    <th>Activo</th>
+                 </tr>
+              </thead>
+                 <tbody> 
+                    <tr ng-repeat="modelo in listaModeloVehiculo() | filter:FiltroModelovehiculo">
+                    <th>{{ modelo.Modelo }}</th>
+                    <th>{{ modelo.Descripcion }}</th>
+                    <th>{{ modelo.TipoVehiculo }}</th>
+                    <th>{{ modelo.Activo }}</th>
+                    <th>
+                       <botton  ng-really-message="¿Desea modificar este Modelo?" ng-really-click="modificarmodelovehiculo(modelo)"   class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></botton>
+                   </th>
+       
+                    <th>
+                       <botton   ng-really-message="¿Desea actualizar esta modelo a inactivo" ng-really-click="eliminarModeloVehiculo(modelo , modelo.pk_ModeloVehiculo)"   class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span></botton>
+                    </th>
+                   
+       
+                    </tr>
+                 </tbody>
+              </table>
+        </div>
+       
+       
+        
+       </div>
+
+    </div>
+
+

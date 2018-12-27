@@ -1,0 +1,94 @@
+<style type="text/css">
+    .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    }
+
+    /* Specify styling for tooltip contents */
+        .tooltip.customClass .tooltip-inner {
+          color: #880000;
+          background-color: #ffff66;
+          box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        }
+        /* Hide arrow */
+        .tooltip.customClass .tooltip-arrow {
+          display: none;
+        }
+</style>
+
+<form ng-submit="guardarAlerta()">
+<div class="modal-header ">
+    <h3 class="modal-title">Registro de Notificaciones</h3>
+</div>
+<div class="modal-body sabuesoContainer2">
+
+        <div class="col-md-6 " style="overflow-y: auto; height: 40vh;">
+            <br />
+            <div class="col-md-2">
+                <label for="Nombre">Nombre:</label>
+            </div>
+            <br /><br />
+            <div class="col-md-10">
+                <input class="form-control" type="text" ng-model="nombreNotificacion" required/>
+            </div>
+            <br /><br />
+            <div class="col-md-3">
+                <label for="Correos" class="">Correos:</label><br />
+            </div>
+            <button type="submit" class="btn btn-primary btn-circle col-md-2"  ng-click="agregar()" uib-tooltip="Agregar otro campo para correo" tooltip-class="customClass">+</button>
+
+            <br /><br />
+
+            <div class="" >
+                <div  ng-repeat="row in correos">
+                    <div class="col-md-10">
+                        <!--<form role="form" ng-submit="guardarAlerta()">-->
+                        <input type="email" class="form-control" ng-model="row[0]" required/>
+                        <!--</form>-->
+                    </div>
+                    <button class="btn btn-danger btn-circle col-md-2" ng-click="eliminarCampo($index)" uib-tooltip="Eliminar campo" tooltip-class="customClass">-</button>
+                    <br /><br /><br />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="input-group">
+                <span id="basic-addon1" class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" placeholder="Buscar Unidades" aria-describedby="basic-addon1" ng-model="busquedaUnidades.Vehiculo" class="form-control"/>
+            </div><br />
+            <label><input type="checkbox" ng-model="todos" ng-click="marcarTodos()"> Seleccionar todos</label>
+            <div style="overflow-y: auto; height: 50vh; max-height: 50vh;">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td>Agre.</td>
+                            <td>Unidad</td>
+                            <td>Conductor</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="row in unidades | filter:busquedaUnidades">
+                            <td><input type="checkbox" ng-model="row.marcado"/> </td>
+                            <td ng-bind="row.Vehiculo"></td>
+                            <td ng-bind="row.Conductor"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="submit">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancel</button>
+</div>
+</form>

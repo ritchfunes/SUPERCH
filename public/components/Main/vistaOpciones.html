@@ -1,0 +1,155 @@
+
+
+<div class="modal-header">
+    <h3 class="modal-title" ng-bind="unidad.Vehiculo"></h3>
+</div>
+<div class="modal-body">
+    <div>
+        <ul role="tablist" class="nav nav-tabs">
+            <li role="presentation" ><a href="#Ubicaciones" aria-controls="Ubicacion" role="tab" data-toggle="tab">Ubicaciones</a></li>
+            <li role="presentation" class="active"><a active="active" href="#Informacion" aria-controls="Informacion" role="tab" data-toggle="tab">Informacion</a></li>
+            <li role="presentation"><a href="#Comandos" aria-controls="Comandos" role="tab" data-toggle="tab">Comandos</a></li>
+            <li role="presentation"><a href="#accesoTemporal" aria-controls="Comandos" role="tab" data-toggle="tab">Acceso Temporal</a></li>
+        </ul>
+        <div class="tab-content" style="overflow-y: auto; height: 56vh; max-height: 56vh;">
+            <div role="tabpanel" id="Ubicaciones" class="tab-pane">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Velocidad</th>
+                        <th>Referencias</th>
+                        <th>Punto</th>
+                    </tr>
+                    </thead>
+                    <tbody style="height: 130px; overflow-y: 40%; width: 100%;">
+                    <tr ng-repeat="posicion in ultimasPosiciones">
+                        <th>{{ utcTimeToLocalTime(posicion.FechaHora) }}</th>
+                        <th>{{ posicion.Velocidad }}</th>
+                        <th>{{ posicion.Latitud }} | {{ posicion.Longitud }}</th>
+                        <th><a href="#" ng-click="LocalizarPunto(posicion,unidad)" data-dismiss="modal"><i style="margin-left:20px;" class="fa fa-map-marker fa-2x"></i></a></th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" id="Informacion" class="tab-pane active">
+                <!--label Reverse Geocoding--><br/>
+                <div >
+                        <div class="form-group">
+                          <label class="col-lg-3 text-primary">Mode:</label>
+                          <label>{{unidad.Modelo}}</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 text-primary">Imei:</label>
+                            <label>{{unidad.Imei}}</label>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-3 text-primary">Vehiculo:</label>
+                            <label>{{unidad.Vehiculo}}</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 text-primary">Kilometraje:</label>
+                            <label>{{ unidad.km}}</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 text-primary">Fecha Creacion:</label>
+                            <label>{{ utcTimeToLocalTime(unidad.FechaCreacion) }}</label>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-lg-3 text-primary">Velocidad:</label>
+                            <label>{{ unidad.Velocidad }}</label>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-3 text-primary">Ultima Actualizacion:</label>
+                            <label  >{{ utcTimeToLocalTime(unidad.FechaHora) }}</label>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-md-2 text-primary">Ubicacion:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" readonly>{{reverseGeocoding.geo}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3"></div>
+
+                </div>
+            </div>
+            <div role="tabpanel" id="Comandos" class="tab-pane">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Comandos Basicos</h3>
+                    </div>
+                    <div class="panel-body">
+                        <button class="btn btn-lg btn-warning" uib-tooltip="Abrir Llavines" ng-really-message="Favor confirme envio de comando" ng-really-click="comandoLlavines()">
+                            <i class="fa fa-key fa-1x"></i>
+                        </button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-lg btn-danger" uib-tooltip="Deshabilitar Vehiculo" ng-really-message="Favor confirme envio de comando" ng-really-click="comandoApagar()">
+                            <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                        </button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-lg btn-primary" uib-tooltip="Habilitar Vehiculo" ng-really-message="Favor confirme envio de comando" ng-really-click="comandoHabilitar()">
+                            <i class="glyphicon glyphicon-ok" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div role="tabpanel" id="accesoTemporal" class="tab-pane">
+                <br/>
+                <form class="form-horizontal" ng-submit="crearAccesoTmp()">
+                    <br/><br/>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Empresa:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control input-sm" ng-model="invitado" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Correo:</label>
+                        <div class="col-md-10">
+                            <input type="email" class="form-control input-sm" ng-model="correoInvitado" required/>
+                        </div>
+                    </div>
+
+                    <div class="row thumbnail form-group" >
+
+                        <div class="col-md-5 col-md-offset-1">
+                            <label class="control-label">Inicio:</label>
+                            <input type="datetime-local"  name="input" class="form-control input-sm" ng-model="inicioAccesoTmp.value"
+                                   placeholder="yyyy-MM-ddTHH:mm:ss"  required />
+                        </div>
+
+                        <div class="col-md-5 ">
+                            <label class="control-label">Fin:</label>
+                            <input type="datetime-local"  name="input" class="form-control input-sm" ng-model="finAccesoTmp.value"
+                                   placeholder="yyyy-MM-ddTHH:mm:ss" required />
+                        </div>
+                    </div>
+                    <br/>
+                    <input type="button" value="Ver" class="btn btn-primary" ng-click="accesoSeguimiento()"/>
+                    <input type="submit" value="Crear" class="btn btn-primary" ng-click=""/>
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!--button class="btn btn-primary" type="button" ng-click="ok()">OK</button-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">salir</button>
+</div>
